@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit History — TVS Lanka ISO Dashboard</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap');
+
+:root {
+  --bg-0: #030509;
+  --bg-1: #06090f;
+
+  --glass-fill-1: rgba(255,255,255,0.09);
+  --glass-fill-2: rgba(255,255,255,0.03);
+  --glass-border: rgba(255,255,255,0.14);
+  --glass-border-hi: rgba(255,255,255,0.42);
+  --glass-shadow: 0 20px 60px -12px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3);
+
+  --teal: #5ee6cf;
+  --blue: #6fa3ff;
+  --violet: #b28dff;
+  --amber: #ffc267;
+  --red: #ff7a7a;
+
+  --text-hi: #f5f8fd;
+  --text-mid: #aab6cc;
+  --text-low: #6f7c96;
+
+  --r-xl: 28px;
+  --r-lg: 20px;
+  --r-md: 14px;
+  --r-sm: 10px;
+}
+
+* { box-sizing: border-box; }
+::selection { background: rgba(94,230,207,0.28); color: #fff; }
+
+html { -webkit-font-smoothing: antialiased; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-0);
+  color: var(--text-hi);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+  scroll-behavior: smooth;
+  min-height: 100vh;
+}
+
+h1, h2, .brand .title, .kpi .num {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+
+/* ============ Ambient background: animated light mesh ============ */
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: var(--bg-0);
+}
+.bg-mesh::before {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  background:
+    radial-gradient(38% 30% at 15% 8%, rgba(94,230,207,0.20), transparent 60%),
+    radial-gradient(42% 34% at 88% 2%, rgba(111,163,255,0.20), transparent 60%),
+    radial-gradient(40% 36% at 78% 88%, rgba(178,141,255,0.14), transparent 60%),
+    radial-gradient(30% 26% at 8% 90%, rgba(255,194,103,0.10), transparent 60%);
+  filter: blur(10px);
+  animation: drift 34s ease-in-out infinite alternate;
+}
+.bg-mesh::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 3px 3px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+@keyframes drift {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(-2%, 2%) scale(1.04); }
+  100% { transform: translate(2%, -1%) scale(1.02); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-mesh::before { animation: none; }
+}
+
+/* ============ Layout ============ */
+.layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 22px;
+  min-height: 100vh;
+  padding: 22px;
+  align-items: start;
+}
+
+/* ============ Glass primitive ============ */
+.glass {
+  position: relative;
+  background: linear-gradient(160deg, var(--glass-fill-1), var(--glass-fill-2));
+  backdrop-filter: blur(28px) saturate(170%);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,0.14), inset 0 -1px 12px rgba(0,0,0,0.18);
+}
+.glass::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 12%; right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--glass-border-hi), transparent);
+  border-radius: 100%;
+}
+
+/* ============ Sidebar ============ */
+.sidebar {
+  position: sticky;
+  top: 22px;
+  height: calc(100vh - 44px);
+  padding: 26px 18px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.sidebar::-webkit-scrollbar { width: 0; }
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 26px;
+  padding: 0 8px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.brand .mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  color: var(--teal);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.brand .mark::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 10px 2px rgba(94,230,207,0.7);
+}
+.brand .title {
+  font-size: 17.5px;
+  font-weight: 800;
+  color: var(--text-hi);
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+}
+.brand .sub {
+  font-size: 11.5px;
+  color: var(--text-low);
+  font-weight: 500;
+}
+
+.nav-group { margin-bottom: 22px; }
+.nav-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-low);
+  margin: 0 0 10px 12px;
+  font-weight: 700;
+}
+
+.nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-mid);
+  margin-bottom: 3px;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+.nav-link:hover { background: rgba(255,255,255,0.06); color: var(--text-hi); transform: translateX(2px); }
+.nav-link.active {
+  background: linear-gradient(135deg, rgba(94,230,207,0.20), rgba(111,163,255,0.08));
+  color: #fff;
+  border: 1px solid rgba(94,230,207,0.25);
+  box-shadow: 0 4px 18px -4px rgba(94,230,207,0.25), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.nav-link .ic { width: 18px; text-align: center; font-size: 14px; }
+
+.sidebar-footer { margin-top: auto; padding-top: 16px; }
+
+/* ============ Main ============ */
+.main { min-width: 0; }
+
+.topbar {
+  padding: 16px 26px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.topbar .crumb { font-size: 12.5px; color: var(--text-low); font-weight: 500; }
+.topbar .crumb b { color: var(--text-mid); font-weight: 600; }
+.topbar .pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--teal);
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: rgba(94,230,207,0.10);
+  border: 1px solid rgba(94,230,207,0.25);
+}
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 8px 1px rgba(94,230,207,0.8); }
+
+.content-pad { padding: 4px 26px 60px; }
+
+.page-header { margin-bottom: 34px; }
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+h1 {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 30%, #b9c6de 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.page-desc { color: var(--text-mid); font-size: 14.5px; max-width: 700px; line-height: 1.65; }
+
+/* ============ Grid & Panel ============ */
+.grid { display: grid; gap: 18px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 1050px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: relative; height: auto; top: 0; }
+}
+
+.panel { padding: 24px 26px; }
+
+/* ============ KPI cards ============ */
+.kpi {
+  padding: 22px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.kpi::after {
+  content: "";
+  position: absolute;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  top: -50px; right: -50px;
+  background: radial-gradient(circle, var(--kpi-glow, rgba(94,230,207,0.25)), transparent 70%);
+  filter: blur(6px);
+}
+.kpi .num { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; position: relative; z-index: 1; }
+.kpi .label { font-size: 12.5px; color: var(--text-mid); margin-top: 6px; font-weight: 500; position: relative; z-index: 1; }
+.kpi.ok { --kpi-glow: rgba(94,230,207,0.3); } .kpi.ok .num { color: var(--teal); }
+.kpi.warn { --kpi-glow: rgba(255,194,103,0.3); } .kpi.warn .num { color: var(--amber); }
+.kpi.bad { --kpi-glow: rgba(255,122,122,0.3); } .kpi.bad .num { color: var(--red); }
+
+/* ============ Section title ============ */
+.section-title {
+  font-size: 15.5px;
+  font-weight: 700;
+  margin: 42px 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-hi);
+  letter-spacing: -0.005em;
+}
+.section-title .count {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-mid);
+}
+
+/* ============ Document rows ============ */
+.doc-list { display: flex; flex-direction: column; gap: 9px; }
+.doc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 17px;
+  border-radius: var(--r-md);
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+}
+.doc-row:hover {
+  background: rgba(255,255,255,0.075);
+  border-color: rgba(255,255,255,0.18);
+  transform: translateX(3px);
+}
+.doc-row .name { font-size: 13.5px; color: var(--text-hi); font-weight: 600; }
+.doc-row .meta { font-size: 11.5px; color: var(--text-low); margin-top: 3px; }
+.doc-row .arrow {
+  color: var(--teal);
+  font-size: 14px;
+  flex-shrink: 0;
+  width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: rgba(94,230,207,0.12);
+  transition: transform 0.18s ease;
+}
+.doc-row:hover .arrow { transform: rotate(45deg) scale(1.1); }
+
+.tag {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 4px 9px;
+  border-radius: 7px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+}
+.tag.current { background: rgba(94,230,207,0.14); color: var(--teal); border-color: rgba(94,230,207,0.3); }
+.tag.superseded { background: rgba(170,182,204,0.10); color: var(--text-low); border-color: rgba(170,182,204,0.18); }
+.tag.expired { background: rgba(255,122,122,0.16); color: var(--red); border-color: rgba(255,122,122,0.35); }
+.tag.pending { background: rgba(255,194,103,0.14); color: var(--amber); border-color: rgba(255,194,103,0.3); }
+.tag.folder { background: rgba(111,163,255,0.14); color: var(--blue); border-color: rgba(111,163,255,0.3); }
+
+/* ============ Category card ============ */
+.cat-card {
+  padding: 22px 22px 18px;
+}
+.cat-card .cat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.cat-card .cat-title { font-size: 14.5px; font-weight: 700; display: flex; align-items: center; gap: 9px; }
+
+/* ============ Alerts ============ */
+.alert {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px 20px;
+  border-radius: var(--r-md);
+  margin-bottom: 14px;
+  backdrop-filter: blur(20px);
+}
+.alert.bad { background: linear-gradient(135deg, rgba(255,122,122,0.12), rgba(255,122,122,0.02)); border: 1px solid rgba(255,122,122,0.3); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
+.alert.warn { background: linear-gradient(135deg, rgba(255,194,103,0.12), rgba(255,194,103,0.02)); border: 1px solid rgba(255,194,103,0.3); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
+.alert .a-title { font-weight: 700; font-size: 13.5px; margin-bottom: 4px; color: var(--text-hi); }
+.alert .a-body { font-size: 12.5px; color: var(--text-mid); line-height: 1.55; }
+
+/* ============ Table ============ */
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th {
+  text-align: left;
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-low);
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-weight: 700;
+}
+td { padding: 13px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text-mid); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255,255,255,0.02); }
+td.strong { color: var(--text-hi); font-weight: 600; }
+
+.badge {
+  display: inline-block;
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+}
+.badge.critical { background: rgba(255,122,122,0.16); color: var(--red); border-color: rgba(255,122,122,0.35); }
+.badge.high { background: rgba(255,194,103,0.16); color: var(--amber); border-color: rgba(255,194,103,0.35); }
+.badge.medium { background: rgba(111,163,255,0.16); color: var(--blue); border-color: rgba(111,163,255,0.35); }
+.badge.chronic { background: rgba(255,122,122,0.22); color: #ffc9c9; border: 1px solid rgba(255,122,122,0.5); }
+
+/* ============ Footer ============ */
+.footer-note {
+  margin-top: 56px;
+  padding: 20px 26px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 11.5px;
+  color: var(--text-low);
+  line-height: 1.7;
+}
+
+/* ============ Quicklinks ============ */
+.quicklink-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 6px; }
+@media (max-width: 950px) { .quicklink-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.quicklink {
+  padding: 20px 20px;
+  transition: transform 0.2s cubic-bezier(.2,.8,.2,1), border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.quicklink:hover {
+  transform: translateY(-4px);
+  border-color: rgba(94,230,207,0.4);
+  box-shadow: var(--glass-shadow), 0 0 0 1px rgba(94,230,207,0.15), inset 0 1px 0 rgba(255,255,255,0.18);
+}
+.quicklink .qi {
+  font-size: 20px;
+  margin-bottom: 12px;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(94,230,207,0.18), rgba(111,163,255,0.10));
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.quicklink .qt { font-size: 13.5px; font-weight: 700; margin-bottom: 5px; color: var(--text-hi); }
+.quicklink .qd { font-size: 11.5px; color: var(--text-low); line-height: 1.5; }
+
+</style>
+</head>
+<body>
+<div class="bg-mesh"></div>
+<div class="layout">
+<aside class="sidebar glass">
+  <div class="brand">
+    <div class="mark">TVS Lanka · ISO 9001:2015</div>
+    <div class="title">Vehicle Assembly Complex<br/>Poruwadanda, Horana</div>
+    <div class="sub">Surveillance 2 — Nov 2026</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-label">Dashboard</div>
+    <a class="nav-link" href="index.html"><span class="ic">🏠</span>Overview</a>
+<a class="nav-link" href="statutory-certificates.html"><span class="ic">📜</span>Statutory Certificates</a>
+<a class="nav-link" href="factory-engineer-certifications.html"><span class="ic">⚙️</span>Factory Engineer Certs</a>
+<a class="nav-link" href="ncr-register.html"><span class="ic">🚩</span>NCR Register</a>
+<a class="nav-link" href="mrm.html"><span class="ic">🗂️</span>MRM Records</a>
+<a class="nav-link" href="calibration.html"><span class="ic">📏</span>Calibration</a>
+<a class="nav-link" href="clauses.html"><span class="ic">📘</span>Clause 4-9 QMS</a>
+<a class="nav-link active" href="audit-history.html"><span class="ic">🏛️</span>Audit History</a>
+
+  </div>
+  <div class="sidebar-footer">
+    <div class="nav-group" style="margin-bottom:0;">
+      <div class="nav-label">Live Source</div>
+      <a class="nav-link" href="https://drive.google.com/drive/folders/1fI8lnC75AIHqGL_A47RscJQQVcNP-9Ax" target="_blank"><span class="ic">🔗</span>ISO Dashboard Drive</a>
+    </div>
+  </div>
+</aside>
+<main class="main">
+  <div class="topbar glass">
+    <div class="crumb">ISO 9001:2015 Dashboard&nbsp;/&nbsp;<b>Audit History</b></div>
+    <div class="pill"><span class="pill-dot"></span>Live &middot; Synced to Drive</div>
+  </div>
+  <div class="content-pad">
+    <div class="page-header">
+      <div class="eyebrow">External Audits</div>
+      <h1>Audit History</h1>
+      <div class="page-desc">The certification trail — Stage 2 audit reports, minor non-conformances, and closure evidence from November 2024.</div>
+    </div>
+
+  <div class="section-title">Stage 2 Certification Audit — November 2024</div>
+  <div class="panel glass">
+    <div class="doc-list">
+      <a class="doc-row" href="https://drive.google.com/file/d/1U3VOqRWzW9GC2PaIjoJ5Zw7SLGYOLklu/view" target="_blank">
+      <div><div class="name">Final Audit Report — Stage 2 QMS (Nov 2024)</div></div>
+      <span class="arrow">↗</span>
+    </a>
+      <a class="doc-row" href="https://drive.google.com/file/d/1ASRcTXyn5oIRUrGyYidHrpGFAe1XMweg/view" target="_blank">
+      <div><div class="name">Interim Report — Stage 2 QMS (Nov 2024)</div></div>
+      <span class="arrow">↗</span>
+    </a>
+      <a class="doc-row" href="https://drive.google.com/file/d/1bRiIWPdn7fgTtwjK1tMe_m0PeQ1g3TIs/view" target="_blank">
+      <div><div class="name">Minor NCs Raised — Certification (Nov 2024)</div></div>
+      <span class="arrow">↗</span>
+    </a>
+      <a class="doc-row" href="https://drive.google.com/file/d/1uv_p8wBw6MtBkpVPQ0wBJHSq2GV9XaME/view" target="_blank">
+      <div><div class="name">Sri Lanka MSI Action Closure — All Points Closed</div></div>
+      <span class="arrow">↗</span>
+    </a>
+      <a class="doc-row" href="https://drive.google.com/file/d/19JS_Xjr5gTbVakaHUEgIbD3VSBVutxQ1/view" target="_blank">
+      <div><div class="name">IB Audit Sri Lanka — presentation</div></div>
+      <span class="arrow">↗</span>
+    </a>
+    </div>
+  </div>
+
+  <div class="section-title">Audit Ready Links</div>
+  <div class="panel glass">
+    <div class="doc-list">
+      <a class="doc-row" href="https://drive.google.com/drive/folders/1SruCMh9dSh_uIXXEnyx3kbPPVjtuRUpo" target="_blank">
+      <div><div class="name">Quick Navigation (links to Clauses, Documents, Audits)</div></div>
+      <span class="arrow">↗</span>
+    </a>
+      <a class="doc-row" href="https://drive.google.com/drive/folders/1nq7LkVDhAlJTqsPqGEddVaicQluwNcwt" target="_blank">
+      <div><div class="name">Corrective Action Report & Evidence</div></div>
+      <span class="arrow">↗</span>
+    </a>
+      <a class="doc-row" href="https://drive.google.com/drive/folders/1YqowLsZUve3og3bkjUZS7cNyOKn9-jeX" target="_blank">
+      <div><div class="name">Audit Ready Links (root folder)</div></div>
+      <span class="arrow">↗</span>
+    </a>
+    </div>
+  </div>
+
+  <div class="section-title">Certificate & Contract</div>
+  <div class="panel glass">
+    <table>
+      <tr><th>Item</th><th>Detail</th></tr>
+      <tr><td class="strong">Certification Body</td><td>Bureau Veritas</td></tr>
+      <tr><td class="strong">Contract No.</td><td>CBO/9418</td></tr>
+      <tr><td class="strong">Scope</td><td>Assembling of Motorcycles</td></tr>
+      <tr><td class="strong">Exclusions</td><td>Clause 8.3, Clause 8.5.1(f)</td></tr>
+      <tr><td class="strong">Stage 2 Result</td><td>Certified — minor NCs raised and closed</td></tr>
+      <tr><td class="strong">Next Audit</td><td><span class="badge high">Surveillance 2 — Nov 2026</span></td></tr>
+    </table>
+  </div>
+
+    <div class="footer-note">
+      Live-linked to Google Drive · Links open the source document directly in Drive (permission-controlled, not public).<br/>
+      Dashboard maintained by Denuwan Chamara, Manager – Plant Operations &amp; ISO 9001:2015 Management Representative.
+    </div>
+  </div>
+</main>
+</div>
+</body>
+</html>
