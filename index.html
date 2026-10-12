@@ -464,7 +464,7 @@ td.strong { color: var(--text-hi); font-weight: 600; }
   <div class="brand">
     <div class="mark">TVS Lanka · ISO 9001:2015</div>
     <div class="title">Vehicle Assembly Complex<br/>Poruwadanda, Horana</div>
-    <div class="sub">Surveillance 2 — Nov 2026</div>
+    <div class="sub">Surveillance 2 — 03 Nov 2026 (tentative)</div>
   </div>
   <div class="nav-group">
     <div class="nav-label">Dashboard</div>
@@ -499,22 +499,34 @@ td.strong { color: var(--text-hi); font-weight: 600; }
 
   <div class="alert bad">
     <div>
-      <div class="a-title">⚠ Fire Pump 20100814 — Certification Expired</div>
-      <div class="a-body">Solex Engineering SXHB466/40T last inspected 27.06.2025, expired 27.06.2026. Its twin pump (20100815) is current through 2027. Needs urgent re-inspection by Mr. Asoka Peiris before Surveillance 2.</div>
+      <div class="a-title">⚠ MRM Pending — 13 Action Items Overdue</div>
+      <div class="a-body">No MRM held since the 15-Jul-2026 cycle. All 13 action items are past their July target dates, including 4 chronic items. MRM to be conducted before Surveillance 2.</div>
     </div>
   </div>
   <div class="alert warn">
     <div>
-      <div class="a-title">⏳ Calibration Renewal Awaiting Approval</div>
-      <div class="a-body">ICSC quotation QT2026-0494 (LKR 62,300, 16 items) sent to Mr. Kaushal for approval — deadline 1-Sep-2026, response still unconfirmed.</div>
+      <div class="a-title">📏 Calibration Completed — Records Pending</div>
+      <div class="a-body">ICSC (QT2026-0494) calibration done on site. Calibration records to be issued upon payment. 2 pressure gauges at the fire pump house still to be calibrated (raised by Hirushan).</div>
     </div>
   </div>
 
   <div class="grid grid-4" style="margin-top:26px;">
-    <div class="kpi glass warn"><div class="num">83</div><div class="label">Days to Surveillance 2 (Nov 2026)</div></div>
-    <div class="kpi glass bad"><div class="num">13</div><div class="label">Open MRM Action Items</div></div>
+    <div class="kpi glass warn"><div class="num" id="days-to-audit">—</div><div class="label">Days to Surveillance 2 (03 Nov 2026, tentative)</div></div>
+    <div class="kpi glass bad"><div class="num">13</div><div class="label">Open MRM Action Items (overdue)</div></div>
     <div class="kpi glass ok"><div class="num">6 / 6</div><div class="label">NCRs Closed (incl. IB Joint Audit)</div></div>
-    <div class="kpi glass bad"><div class="num">1</div><div class="label">Expired Statutory Cert</div></div>
+    <div class="kpi glass ok"><div class="num">0</div><div class="label">Expired Statutory Certs</div></div>
+  </div>
+
+  <div class="section-title">Pending Works <span class="count">Before Surveillance 2</span></div>
+  <div class="panel glass">
+    <table>
+      <tr><th>Item</th><th>Area</th><th>Status</th></tr>
+      <tr><td class="strong">Conduct MRM — review 13 overdue action items (4 chronic)</td><td>Clause 9.3</td><td><span class="badge critical">Pending</span></td></tr>
+      <tr><td class="strong">Calibrate 2 pressure gauges at fire pump house</td><td>Clause 7.1.5</td><td><span class="badge high">Open — Hirushan</span></td></tr>
+      <tr><td class="strong">Collect ICSC calibration records (on payment)</td><td>Clause 7.1.5</td><td><span class="badge high">Awaiting payment</span></td></tr>
+      <tr><td class="strong">Fire Pump 20100814 — renewed certificate to PDF and file in Drive</td><td>Statutory</td><td><span class="badge medium">In progress</span></td></tr>
+      <tr><td class="strong">Objective Monitoring Table — finalise with team</td><td>Clause 6</td><td><span class="badge high">To discuss</span></td></tr>
+    </table>
   </div>
 
   <div class="section-title">Highlight — IB Joint Audit 2026 <span class="count">TVSM India · Internal + IB Auditors</span></div>
@@ -547,12 +559,12 @@ td.strong { color: var(--text-hi); font-weight: 600; }
     <a class="quicklink glass" href="mrm.html">
       <div class="qi">🗂️</div>
       <div class="qt">MRM Records</div>
-      <div class="qd">Management Review Meeting minutes and the 13 open action items carried into the next cycle.</div>
+      <div class="qd">Management Review Meeting minutes and the 13 overdue action items for the next MRM.</div>
     </a>
     <a class="quicklink glass" href="calibration.html">
       <div class="qi">📏</div>
       <div class="qt">Calibration</div>
-      <div class="qd">Equipment calibration reports and the pending renewal quotation from ICSC.</div>
+      <div class="qd">Calibration reports — 2026 cycle completed by ICSC, records pending.</div>
     </a>
     <a class="quicklink glass" href="clauses.html">
       <div class="qi">📘</div>
@@ -580,7 +592,7 @@ td.strong { color: var(--text-hi); font-weight: 600; }
       <tr><td class="strong">Exclusions</td><td>Clause 8.3 (Design & Development) and Clause 8.5.1(f) (Post-Delivery Activities)</td></tr>
       <tr><td class="strong">Certification Body</td><td>Bureau Veritas — Contract CBO/9418</td></tr>
       <tr><td class="strong">Last Audit</td><td>Stage 2 — November 2024 (see Audit History)</td></tr>
-      <tr><td class="strong">Next Milestone</td><td>Surveillance 2 — expected November 2026</td></tr>
+      <tr><td class="strong">Next Milestone</td><td>Surveillance 2 — 03 November 2026 (tentative)</td></tr>
     </table>
   </div>
 
@@ -591,5 +603,14 @@ td.strong { color: var(--text-hi); font-weight: 600; }
   </div>
 </main>
 </div>
+<script>
+(function(){
+  var el=document.getElementById('days-to-audit'); if(!el) return;
+  var audit=new Date('2026-11-03T00:00:00+05:30');
+  var now=new Date();
+  var days=Math.ceil((audit-now)/86400000);
+  el.textContent = days>0 ? days : (days===0 ? 'Today' : 'Done');
+})();
+</script>
 </body>
 </html>
