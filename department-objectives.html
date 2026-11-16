@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Department Objectives — TVS Lanka ISO Dashboard</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap');
+
+:root {
+  --bg-0: #030509;
+  --bg-1: #06090f;
+
+  --glass-fill-1: rgba(255,255,255,0.09);
+  --glass-fill-2: rgba(255,255,255,0.03);
+  --glass-border: rgba(255,255,255,0.14);
+  --glass-border-hi: rgba(255,255,255,0.42);
+  --glass-shadow: 0 20px 60px -12px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3);
+
+  --teal: #5ee6cf;
+  --blue: #6fa3ff;
+  --violet: #b28dff;
+  --amber: #ffc267;
+  --red: #ff7a7a;
+
+  --text-hi: #f5f8fd;
+  --text-mid: #aab6cc;
+  --text-low: #6f7c96;
+
+  --r-xl: 28px;
+  --r-lg: 20px;
+  --r-md: 14px;
+  --r-sm: 10px;
+}
+
+* { box-sizing: border-box; }
+::selection { background: rgba(94,230,207,0.28); color: #fff; }
+
+html { -webkit-font-smoothing: antialiased; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-0);
+  color: var(--text-hi);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+  scroll-behavior: smooth;
+  min-height: 100vh;
+}
+
+h1, h2, .brand .title, .kpi .num {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+
+/* ============ Ambient background: animated light mesh ============ */
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: var(--bg-0);
+}
+.bg-mesh::before {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  background:
+    radial-gradient(38% 30% at 15% 8%, rgba(94,230,207,0.20), transparent 60%),
+    radial-gradient(42% 34% at 88% 2%, rgba(111,163,255,0.20), transparent 60%),
+    radial-gradient(40% 36% at 78% 88%, rgba(178,141,255,0.14), transparent 60%),
+    radial-gradient(30% 26% at 8% 90%, rgba(255,194,103,0.10), transparent 60%);
+  filter: blur(10px);
+  animation: drift 34s ease-in-out infinite alternate;
+}
+.bg-mesh::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 3px 3px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+@keyframes drift {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(-2%, 2%) scale(1.04); }
+  100% { transform: translate(2%, -1%) scale(1.02); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-mesh::before { animation: none; }
+}
+
+/* ============ Layout ============ */
+.layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 22px;
+  min-height: 100vh;
+  padding: 22px;
+  align-items: start;
+}
+
+/* ============ Glass primitive ============ */
+.glass {
+  position: relative;
+  background: linear-gradient(160deg, var(--glass-fill-1), var(--glass-fill-2));
+  backdrop-filter: blur(28px) saturate(170%);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,0.14), inset 0 -1px 12px rgba(0,0,0,0.18);
+}
+.glass::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 12%; right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--glass-border-hi), transparent);
+  border-radius: 100%;
+}
+
+/* ============ Sidebar ============ */
+.sidebar {
+  position: sticky;
+  top: 22px;
+  height: calc(100vh - 44px);
+  padding: 26px 18px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.sidebar::-webkit-scrollbar { width: 0; }
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 26px;
+  padding: 0 8px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.brand .mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  color: var(--teal);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.brand .mark::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 10px 2px rgba(94,230,207,0.7);
+}
+.brand .title {
+  font-size: 17.5px;
+  font-weight: 800;
+  color: var(--text-hi);
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+}
+.brand .sub {
+  font-size: 11.5px;
+  color: var(--text-low);
+  font-weight: 500;
+}
+
+.nav-group { margin-bottom: 22px; }
+.nav-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-low);
+  margin: 0 0 10px 12px;
+  font-weight: 700;
+}
+
+.nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-mid);
+  margin-bottom: 3px;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+.nav-link:hover { background: rgba(255,255,255,0.06); color: var(--text-hi); transform: translateX(2px); }
+.nav-link.active {
+  background: linear-gradient(135deg, rgba(94,230,207,0.20), rgba(111,163,255,0.08));
+  color: #fff;
+  border: 1px solid rgba(94,230,207,0.25);
+  box-shadow: 0 4px 18px -4px rgba(94,230,207,0.25), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.nav-link .ic { width: 18px; text-align: center; font-size: 14px; }
+
+.sidebar-footer { margin-top: auto; padding-top: 16px; }
+
+/* ============ Main ============ */
+.main { min-width: 0; }
+
+.topbar {
+  padding: 16px 26px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.topbar .crumb { font-size: 12.5px; color: var(--text-low); font-weight: 500; }
+.topbar .crumb b { color: var(--text-mid); font-weight: 600; }
+.topbar .pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--teal);
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: rgba(94,230,207,0.10);
+  border: 1px solid rgba(94,230,207,0.25);
+}
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 8px 1px rgba(94,230,207,0.8); }
+
+.content-pad { padding: 4px 26px 60px; }
+
+.page-header { margin-bottom: 34px; }
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+h1 {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 30%, #b9c6de 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.page-desc { color: var(--text-mid); font-size: 14.5px; max-width: 700px; line-height: 1.65; }
+
+/* ============ Grid & Panel ============ */
+.grid { display: grid; gap: 18px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 1050px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: relative; height: auto; top: 0; }
+}
+
+.panel { padding: 24px 26px; }
+
+/* ============ KPI cards ============ */
+.kpi {
+  padding: 22px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.kpi::after {
+  content: "";
+  position: absolute;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  top: -50px; right: -50px;
+  background: radial-gradient(circle, var(--kpi-glow, rgba(94,230,207,0.25)), transparent 70%);
+  filter: blur(6px);
+}
+.kpi .num { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; position: relative; z-index: 1; }
+.kpi .label { font-size: 12.5px; color: var(--text-mid); margin-top: 6px; font-weight: 500; position: relative; z-index: 1; min-height: 2.9em; line-height: 1.45; }
+.kpi.ok { --kpi-glow: rgba(94,230,207,0.3); } .kpi.ok .num { color: var(--teal); }
+.kpi.warn { --kpi-glow: rgba(255,194,103,0.3); } .kpi.warn .num { color: var(--amber); }
+.kpi.bad { --kpi-glow: rgba(255,122,122,0.3); } .kpi.bad .num { color: var(--red); }
+
+/* ============ Section title ============ */
+.section-title {
+  font-size: 15.5px;
+  font-weight: 700;
+  margin: 42px 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-hi);
+  letter-spacing: -0.005em;
+}
+.section-title .count {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-mid);
+}
+
+/* ============ Document rows ============ */
+.doc-list { display: flex; flex-direction: column; gap: 9px; }
+.doc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 17px;
+  border-radius: var(--r-md);
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+}
+.doc-row:hover {
+  background: rgba(255,255,255,0.075);
+  border-color: rgba(255,255,255,0.18);
+  transform: translateX(3px);
+}
+.doc-row .name { font-size: 13.5px; color: var(--text-hi); font-weight: 600; }
+.doc-row .meta { font-size: 11.5px; color: var(--text-low); margin-top: 3px; }
+.doc-row .arrow {
+  color: var(--teal);
+  font-size: 14px;
+  flex-shrink: 0;
+  width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: rgba(94,230,207,0.12);
+  transition: transform 0.18s ease;
+}
+.doc-row:hover .arrow { transform: rotate(45deg) scale(1.1); }
+
+.tag {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 4px 9px;
+  border-radius: 7px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+}
+.tag.current { background: rgba(94,230,207,0.14); color: var(--teal); border-color: rgba(94,230,207,0.3); }
+.tag.superseded { background: rgba(170,182,204,0.10); color: var(--text-low); border-color: rgba(170,182,204,0.18); }
+.tag.expired { background: rgba(255,122,122,0.16); color: var(--red); border-color: rgba(255,122,122,0.35); }
+.tag.pending { background: rgba(255,194,103,0.14); color: var(--amber); border-color: rgba(255,194,103,0.3); }
+.tag.folder { background: rgba(111,163,255,0.14); color: var(--blue); border-color: rgba(111,163,255,0.3); }
+
+/* ============ Category card ============ */
+.cat-card {
+  padding: 22px 22px 18px;
+}
+.cat-card .cat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.cat-card .cat-title { font-size: 14.5px; font-weight: 700; display: flex; align-items: center; gap: 9px; }
+
+/* ============ Alerts ============ */
+.alert {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px 20px;
+  border-radius: var(--r-md);
+  margin-bottom: 14px;
+  backdrop-filter: blur(20px);
+}
+.alert.bad { background: linear-gradient(135deg, rgba(255,122,122,0.12), rgba(255,122,122,0.02)); border: 1px solid rgba(255,122,122,0.3); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
+.alert.warn { background: linear-gradient(135deg, rgba(255,194,103,0.12), rgba(255,194,103,0.02)); border: 1px solid rgba(255,194,103,0.3); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
+.alert .a-title { font-weight: 700; font-size: 13.5px; margin-bottom: 4px; color: var(--text-hi); }
+.alert .a-body { font-size: 12.5px; color: var(--text-mid); line-height: 1.55; }
+
+/* ============ Table ============ */
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th {
+  text-align: left;
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-low);
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-weight: 700;
+}
+td { padding: 13px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text-mid); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255,255,255,0.02); }
+td.strong { color: var(--text-hi); font-weight: 600; }
+
+.badge {
+  display: inline-block;
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+}
+.badge.critical { background: rgba(255,122,122,0.16); color: var(--red); border-color: rgba(255,122,122,0.35); }
+.badge.high { background: rgba(255,194,103,0.16); color: var(--amber); border-color: rgba(255,194,103,0.35); }
+.badge.medium { background: rgba(111,163,255,0.16); color: var(--blue); border-color: rgba(111,163,255,0.35); }
+.badge.chronic { background: rgba(255,122,122,0.22); color: #ffc9c9; border: 1px solid rgba(255,122,122,0.5); }
+
+/* ============ Footer ============ */
+.footer-note {
+  margin-top: 56px;
+  padding: 20px 26px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 11.5px;
+  color: var(--text-low);
+  line-height: 1.7;
+}
+
+/* ============ Quicklinks ============ */
+.quicklink-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 6px; }
+@media (max-width: 950px) { .quicklink-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.quicklink {
+  padding: 20px 20px;
+  transition: transform 0.2s cubic-bezier(.2,.8,.2,1), border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.quicklink:hover {
+  transform: translateY(-4px);
+  border-color: rgba(94,230,207,0.4);
+  box-shadow: var(--glass-shadow), 0 0 0 1px rgba(94,230,207,0.15), inset 0 1px 0 rgba(255,255,255,0.18);
+}
+.quicklink .qi {
+  font-size: 20px;
+  margin-bottom: 12px;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(94,230,207,0.18), rgba(111,163,255,0.10));
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.quicklink .qt { font-size: 13.5px; font-weight: 700; margin-bottom: 5px; color: var(--text-hi); }
+.quicklink .qd { font-size: 11.5px; color: var(--text-low); line-height: 1.5; }
+
+</style>
+</head>
+<body>
+<div class="bg-mesh"></div>
+<div class="layout">
+<aside class="sidebar glass">
+  <div class="brand">
+    <div class="mark">TVS Lanka · ISO 9001:2015</div>
+    <div class="title">Vehicle Assembly Complex<br/>Poruwadanda, Horana</div>
+    <div class="sub">Surveillance 2 — 2nd week of Dec 2026 (date TBC)</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-label">Dashboard</div>
+    <a class="nav-link" href="index.html"><span class="ic">🏠</span>Overview</a>
+<a class="nav-link" href="statutory-certificates.html"><span class="ic">📜</span>Statutory Certificates</a>
+<a class="nav-link" href="factory-engineer-certifications.html"><span class="ic">⚙️</span>Factory Engineer Certs</a>
+<a class="nav-link" href="ncr-register.html"><span class="ic">🚩</span>NCR Register</a>
+<a class="nav-link" href="mrm.html"><span class="ic">🗂️</span>MRM Records</a>
+<a class="nav-link" href="calibration.html"><span class="ic">📏</span>Calibration</a>
+<a class="nav-link" href="clauses.html"><span class="ic">📘</span>Clause 4-9 QMS</a>
+<a class="nav-link" href="audit-history.html"><span class="ic">🏛️</span>Audit History</a>
+<a class="nav-link active" href="department-objectives.html"><span class="ic">🎯</span>Department Objectives</a>
+
+  </div>
+  <div class="sidebar-footer">
+    <div class="nav-group" style="margin-bottom:0;">
+      <div class="nav-label">Live Source</div>
+      <a class="nav-link" href="https://drive.google.com/drive/folders/1fI8lnC75AIHqGL_A47RscJQQVcNP-9Ax" target="_blank"><span class="ic">🔗</span>ISO Dashboard Drive</a>
+    </div>
+  </div>
+</aside>
+<main class="main">
+  <div class="topbar glass">
+    <div class="crumb">ISO 9001:2015 Dashboard&nbsp;/&nbsp;<b>Department Objectives</b></div>
+    <div class="pill"><span class="pill-dot"></span>Live &middot; Synced to Drive</div>
+  </div>
+  <div class="content-pad">
+    <div class="page-header">
+      <div class="eyebrow">Clause 6.2 · TVS/QMS/OMT/01</div>
+      <h1>Department Objectives</h1>
+      <div class="page-desc">The 7 quality objectives from the Objective Monitoring Table, with the digital and AI tools each department now uses to measure and achieve them.</div>
+    </div>
+
+  <div class="alert warn">
+    <div>
+      <div class="a-title">📝 2026–27 update — draft for MR / Head of Plant Operations approval</div>
+      <div class="a-body">The 2024 objectives (TVS/QMS/OMT/01, issued 2024-03-24) are shown as approved. The "2026–27 update" lines are a draft linking each
+      objective to the new digital and AI systems. Once approved, issue revision 01 of TVS/QMS/OMT/01 and record actual 2026 results against each target.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Digital &amp; AI Systems Supporting the QMS <span class="count">Built 2026</span></div>
+  <div class="panel glass">
+    <table>
+      <tr><th>System</th><th>Department</th><th>What it does</th><th>Clause</th></tr>
+      <tr><td class="strong">TVS Horana CMMS</td><td>Maintenance</td><td>Work orders, PM checklists, daily readings, AI assistant, AI meter-photo reading</td><td>7.1.3, 7.1.4</td></tr>
+      <tr><td class="strong">TVS Horana MIS + Daily / Weekly Pulse</td><td>Production, Quality, Stores, Delivery</td><td>Daily figures from the department emails, Pulse cards, AI chat bot for figures</td><td>9.1.1</td></tr>
+      <tr><td class="strong">SPARK</td><td>HR / Production</td><td>Skill entry exam for new hires, 6-monthly skill evaluation</td><td>7.2</td></tr>
+      <tr><td class="strong">HR Carder Dashboard</td><td>HR</td><td>Approved vs actual carder, attendance</td><td>7.1.2</td></tr>
+      <tr><td class="strong">TVS Chassis Verify</td><td>Stores</td><td>AI reads chassis + engine numbers at de-packing and matches the packing list</td><td>8.5.2, 8.6</td></tr>
+      <tr><td class="strong">Sales stock site</td><td>Stores / Sales</td><td>Ready-to-sell stock by model and colour for the sales team</td><td>8.2.1</td></tr>
+      <tr><td class="strong">Command Centre</td><td>Plant management</td><td>One view of MIS, CMMS, HR and SPARK, with an AI assistant</td><td>5.1, 9.1.3</td></tr>
+    </table>
+  </div>
+
+  <div class="section-title">Objectives by Department <span class="count">7 objectives</span></div>
+  <div class="grid grid-2">
+    <div class="cat-card glass">
+      <div class="cat-head"><div class="cat-title">01 · 👥 Human Resource</div><span class="tag folder">Malindu / Kaushal</span></div>
+      <table>
+        <tr><td class="strong" style="width:34%">2024 objective</td><td>Recruitment completed within 14 days</td></tr>
+        <tr><td class="strong">Initial → target</td><td>— → 14 days · Six-monthly</td></tr>
+        <tr><td class="strong">Digital / AI tools now in use</td><td><ul style="margin:0;padding-left:18px;line-height:1.6;"><li><b>SPARK</b> — skill entry exam for new assembly hires on the candidate’s phone (20 picture questions, English/Sinhala, scored Advanced / Intermediate / Basic / Not Qualified)</li><li><b>HR Carder Dashboard</b> — approved vs actual carder by section, daily attendance</li></ul></td></tr>
+        <tr><td class="strong">2026–27 update <span class="badge high">Draft</span></td><td>Keep: recruitment within 14 days. <b>Add:</b> 100% of new assembly hires pass the SPARK entry exam (70% or more) before line assignment; 6-monthly SPARK skill evaluation for existing staff.</td></tr>
+      </table>
+    </div>
+    <div class="cat-card glass">
+      <div class="cat-head"><div class="cat-title">02 · ✅ Quality</div><span class="tag folder">Kalpa / Kaushal</span></div>
+      <table>
+        <tr><td class="strong" style="width:34%">2024 objective</td><td>Direct pass rate +2%</td></tr>
+        <tr><td class="strong">Initial → target</td><td>90% → 92% · Annually</td></tr>
+        <tr><td class="strong">Digital / AI tools now in use</td><td><ul style="margin:0;padding-left:18px;line-height:1.6;"><li><b>MIS Quality module</b> — daily quality figures on the MIS site and in the Daily / Weekly Pulse card</li></ul></td></tr>
+        <tr><td class="strong">2026–27 update <span class="badge high">Draft</span></td><td>Keep: direct pass 92%, now measured daily from the MIS. <b>Add:</b> monthly direct-pass trend reviewed at the quality meeting, using the MIS figures as the record.</td></tr>
+      </table>
+    </div>
+    <div class="cat-card glass">
+      <div class="cat-head"><div class="cat-title">03 · 🏭 Production</div><span class="tag folder">Denuwan / Kaushal</span></div>
+      <table>
+        <tr><td class="strong" style="width:34%">2024 objective</td><td>Productivity factor +10% with two new model variants</td></tr>
+        <tr><td class="strong">Initial → target</td><td>2.0 → 2.2 · Annually</td></tr>
+        <tr><td class="strong">Digital / AI tools now in use</td><td><ul style="margin:0;padding-left:18px;line-height:1.6;"><li><b>MIS Daily Pulse / Weekly Pulse</b> — production by line every day, attendance and units per person (from the HR Carder data)</li><li><b>Command Centre AI assistant</b> — answers production questions from the MIS figures</li></ul></td></tr>
+        <tr><td class="strong">2026–27 update <span class="badge high">Draft</span></td><td>Keep: productivity factor 2.2. <b>Add:</b> units per person tracked daily per section (CKD / SKD / 3W) from the MIS Pulse; target to be set from the 2026 baseline.</td></tr>
+      </table>
+    </div>
+    <div class="cat-card glass">
+      <div class="cat-head"><div class="cat-title">04 · 📦 Stores</div><span class="tag folder">Chathura / Kaushal</span></div>
+      <table>
+        <tr><td class="strong" style="width:34%">2024 objective</td><td>Unloading verification + GRN time of CKD/DVA shipments −10%</td></tr>
+        <tr><td class="strong">Initial → target</td><td>12 h → 10 h · 8 months</td></tr>
+        <tr><td class="strong">Digital / AI tools now in use</td><td><ul style="margin:0;padding-left:18px;line-height:1.6;"><li><b>TVS Chassis Verify</b> — AI reads the chassis and engine number photos at de-packing and checks them against the shipment packing list; mismatches are held</li><li><b>MIS Stores module</b> — daily stock in box form; <b>Sales stock site</b> for the sales team</li></ul></td></tr>
+        <tr><td class="strong">2026–27 update <span class="badge high">Draft</span></td><td>Keep: GRN time 10 h. <b>Add:</b> 100% of bikes photo-verified (chassis + engine) against the packing list at de-packing, 0 unverified bikes released.</td></tr>
+      </table>
+    </div>
+    <div class="cat-card glass">
+      <div class="cat-head"><div class="cat-title">05 · 🚚 Delivery</div><span class="tag folder">Anura / Kaushal</span></div>
+      <table>
+        <tr><td class="strong" style="width:34%">2024 objective</td><td>On-time delivery of two-wheelers +5% per month</td></tr>
+        <tr><td class="strong">Initial → target</td><td>70% → 80% · Annually</td></tr>
+        <tr><td class="strong">Digital / AI tools now in use</td><td><ul style="margin:0;padding-left:18px;line-height:1.6;"><li><b>MIS Delivery module</b> — daily delivery figures and pending vehicles; delivery in the Weekly Pulse</li></ul></td></tr>
+        <tr><td class="strong">2026–27 update <span class="badge high">Draft</span></td><td>Keep: on-time delivery 80%, measured from the MIS delivery records.</td></tr>
+      </table>
+    </div>
+    <div class="cat-card glass">
+      <div class="cat-head"><div class="cat-title">06 · ⭐ Customer Satisfaction</div><span class="tag folder">Denuwan / Kaushal</span></div>
+      <table>
+        <tr><td class="strong" style="width:34%">2024 objective</td><td>Customer satisfaction +5%</td></tr>
+        <tr><td class="strong">Initial → target</td><td>85% → 90% · Annually</td></tr>
+        <tr><td class="strong">Digital / AI tools now in use</td><td><ul style="margin:0;padding-left:18px;line-height:1.6;"><li>No digital / AI tool yet</li></ul></td></tr>
+        <tr><td class="strong">2026–27 update <span class="badge high">Draft</span></td><td>Keep: 90%. <b>Proposed:</b> move the survey to a phone form so results are recorded and summarised automatically.</td></tr>
+      </table>
+    </div>
+    <div class="cat-card glass">
+      <div class="cat-head"><div class="cat-title">07 · 🔧 Maintenance</div><span class="tag folder">Hirushan / Denuwan</span></div>
+      <table>
+        <tr><td class="strong" style="width:34%">2024 objective</td><td>Online maintenance work-order system; no more than 10 requests per month</td></tr>
+        <tr><td class="strong">Initial → target</td><td>— → ≤10 per month · Annually</td></tr>
+        <tr><td class="strong">Digital / AI tools now in use</td><td><ul style="margin:0;padding-left:18px;line-height:1.6;"><li><b>TVS Horana CMMS</b> — online work orders with approval and tracking, AI maintenance assistant, monthly PM checklists that raise a work order when a check is Not OK</li><li><b>Daily plant readings</b> — generator, compressor, water meter by 10:00; AI reads the meter photos</li></ul></td></tr>
+        <tr><td class="strong">2026–27 update <span class="badge high">Draft</span></td><td><b>Achieved:</b> the online system is live and 2026 requests stayed well under 10 per month (13 requests Jan–Nov 2026). <b>Proposed new objective:</b> 95% of planned PM checks done on time, and daily readings recorded by 10:00 on 95% of working days.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section-title">Source Documents</div>
+  <div class="panel glass">
+    <div class="doc-list">
+      <a class="doc-row" href="https://drive.google.com/file/d/1kGSzIR2I3orB7wwVUhH24scyGJynjUx2/view" target="_blank">
+      <div><div class="name">Objective Monitoring Table — Summary (TVS/QMS/OMT/01, 2024)</div><div class="meta">Rev 00 · issued 2024-03-24</div></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span class="tag current">Current</span><span class="arrow">↗</span></div>
+    </a>
+      <a class="doc-row" href="https://drive.google.com/drive/folders/14UTt4FuuHmRq6-revc1lkUyzPXXHgLym" target="_blank">
+      <div><div class="name">Clause 6 folder — department management programmes</div><div class="meta">Production, Quality, Maintenance, HR, Delivery, Stores, CSAT</div></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span class="tag folder">Folder</span><span class="arrow">↗</span></div>
+    </a>
+    </div>
+  </div>
+
+    <div class="footer-note">
+      Live-linked to Google Drive · Links open the source document directly in Drive (permission-controlled, not public).<br/>
+      Dashboard maintained by Denuwan Chamara, Manager – Plant Operations &amp; ISO 9001:2015 Management Representative.
+    </div>
+  </div>
+</main>
+</div>
+</body>
+</html>
