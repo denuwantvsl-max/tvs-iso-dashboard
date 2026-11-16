@@ -287,7 +287,7 @@ h1 {
   filter: blur(6px);
 }
 .kpi .num { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; position: relative; z-index: 1; }
-.kpi .label { font-size: 12.5px; color: var(--text-mid); margin-top: 6px; font-weight: 500; position: relative; z-index: 1; }
+.kpi .label { font-size: 12.5px; color: var(--text-mid); margin-top: 6px; font-weight: 500; position: relative; z-index: 1; min-height: 2.9em; line-height: 1.45; }
 .kpi.ok { --kpi-glow: rgba(94,230,207,0.3); } .kpi.ok .num { color: var(--teal); }
 .kpi.warn { --kpi-glow: rgba(255,194,103,0.3); } .kpi.warn .num { color: var(--amber); }
 .kpi.bad { --kpi-glow: rgba(255,122,122,0.3); } .kpi.bad .num { color: var(--red); }
@@ -464,7 +464,7 @@ td.strong { color: var(--text-hi); font-weight: 600; }
   <div class="brand">
     <div class="mark">TVS Lanka · ISO 9001:2015</div>
     <div class="title">Vehicle Assembly Complex<br/>Poruwadanda, Horana</div>
-    <div class="sub">Surveillance 2 — 03 Nov 2026 (tentative)</div>
+    <div class="sub">Surveillance 2 — 2nd week of Dec 2026 (date TBC)</div>
   </div>
   <div class="nav-group">
     <div class="nav-label">Dashboard</div>
@@ -497,10 +497,16 @@ td.strong { color: var(--text-hi); font-weight: 600; }
       <div class="page-desc">Live status for TVS Lanka's Quality Management System — certificates, NCRs, MRM tracking, and calibration, all linked directly to source documents in Google Drive.</div>
     </div>
 
-  <div class="alert bad">
+  <div class="alert warn">
     <div>
-      <div class="a-title">⚠ MRM Pending — 13 Action Items Overdue</div>
-      <div class="a-body">No MRM held since the 15-Jul-2026 cycle. All 13 action items are past their July target dates, including 4 chronic items. MRM to be conducted before Surveillance 2.</div>
+      <div class="a-title">📅 Surveillance 2 moved to the 2nd week of December 2026</div>
+      <div class="a-body">Bureau Veritas Surveillance 2 did not take place in November. It is now planned for the 2nd week of December 2026 (exact date to be confirmed).</div>
+    </div>
+  </div>
+  <div class="alert warn">
+    <div>
+      <div class="a-title">🗂️ MRM held 13-Oct-2026 — minutes and action status to be uploaded</div>
+      <div class="a-body">The 13 action items from the 15-Jul-2026 cycle (4 chronic) were reviewed at the 13-Oct-2026 MRM. Their updated status will be shown here once the minutes are uploaded.</div>
     </div>
   </div>
   <div class="alert warn">
@@ -511,8 +517,8 @@ td.strong { color: var(--text-hi); font-weight: 600; }
   </div>
 
   <div class="grid grid-4" style="margin-top:26px;">
-    <div class="kpi glass warn"><div class="num" id="days-to-audit">—</div><div class="label">Days to Surveillance 2 (03 Nov 2026, tentative)</div></div>
-    <div class="kpi glass bad"><div class="num">13</div><div class="label">Open MRM Action Items (overdue)</div></div>
+    <div class="kpi glass warn"><div class="num" id="days-to-audit">—</div><div class="label">Days to Surveillance 2 (week of 07 Dec 2026, date TBC)</div></div>
+    <div class="kpi glass warn"><div class="num">13 Oct</div><div class="label">Last MRM held (2026) — minutes to upload</div></div>
     <div class="kpi glass ok"><div class="num">6 / 6</div><div class="label">NCRs Closed (incl. IB Joint Audit)</div></div>
     <div class="kpi glass ok"><div class="num">0</div><div class="label">Expired Statutory Certs</div></div>
   </div>
@@ -521,7 +527,7 @@ td.strong { color: var(--text-hi); font-weight: 600; }
   <div class="panel glass">
     <table>
       <tr><th>Item</th><th>Area</th><th>Status</th></tr>
-      <tr><td class="strong">Conduct MRM — review 13 overdue action items (4 chronic)</td><td>Clause 9.3</td><td><span class="badge critical">Pending</span></td></tr>
+      <tr><td class="strong">Upload 13-Oct-2026 MRM minutes + update status of the 13 action items (4 chronic)</td><td>Clause 9.3</td><td><span class="badge high">Minutes to upload</span></td></tr>
       <tr><td class="strong">Calibrate 2 pressure gauges at fire pump house</td><td>Clause 7.1.5</td><td><span class="badge high">Open — Hirushan</span></td></tr>
       <tr><td class="strong">Collect ICSC calibration records (on payment)</td><td>Clause 7.1.5</td><td><span class="badge high">Awaiting payment</span></td></tr>
       <tr><td class="strong">Objective Monitoring Table — finalise with team</td><td>Clause 6</td><td><span class="badge high">To discuss</span></td></tr>
@@ -573,7 +579,7 @@ td.strong { color: var(--text-hi); font-weight: 600; }
     <a class="quicklink glass" href="audit-history.html">
       <div class="qi">🏛️</div>
       <div class="qt">Audit History</div>
-      <div class="qd">Stage 2 certification audit (Nov 2024) — interim & final reports, minor NCs, MSI closure.</div>
+      <div class="qd">Stage 2 (Nov 2024) and Surveillance 1 (Oct 2025) — reports, audit plans, minor NCs, MSI closure.</div>
     </a>
     <a class="quicklink glass" href="https://drive.google.com/drive/folders/1fI8lnC75AIHqGL_A47RscJQQVcNP-9Ax" target="_blank">
       <div class="qi">🔗</div>
@@ -590,8 +596,8 @@ td.strong { color: var(--text-hi); font-weight: 600; }
       <tr><td class="strong">Scope</td><td>Assembling of Motorcycles</td></tr>
       <tr><td class="strong">Exclusions</td><td>Clause 8.3 (Design & Development) and Clause 8.5.1(f) (Post-Delivery Activities)</td></tr>
       <tr><td class="strong">Certification Body</td><td>Bureau Veritas — Contract CBO/9418</td></tr>
-      <tr><td class="strong">Last Audit</td><td>Stage 2 — November 2024 (see Audit History)</td></tr>
-      <tr><td class="strong">Next Milestone</td><td>Surveillance 2 — 03 November 2026 (tentative)</td></tr>
+      <tr><td class="strong">Last Audit</td><td>Surveillance 1 — 13 October 2025, on site (see Audit History)</td></tr>
+      <tr><td class="strong">Next Milestone</td><td>Surveillance 2 — 2nd week of December 2026 (date TBC)</td></tr>
     </table>
   </div>
 
@@ -605,7 +611,7 @@ td.strong { color: var(--text-hi); font-weight: 600; }
 <script>
 (function(){
   var el=document.getElementById('days-to-audit'); if(!el) return;
-  var audit=new Date('2026-11-03T00:00:00+05:30');
+  var audit=new Date('2026-12-07T00:00:00+05:30');
   var now=new Date();
   var days=Math.ceil((audit-now)/86400000);
   el.textContent = days>0 ? days : (days===0 ? 'Today' : 'Done');
