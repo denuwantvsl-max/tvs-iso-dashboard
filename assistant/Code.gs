@@ -123,7 +123,8 @@ function login_(user, pin) {
   var today = Utilities.formatDate(new Date(), 'Asia/Colombo', 'yyyy-MM-dd');
   var found = null;
   for (var i = 0; i < rows.length; i++) {
-    if (String(rows[i][0]).trim().toLowerCase() === user) { found = rows[i]; break; }
+    var norm = function (s) { return String(s).trim().toLowerCase().replace(/\s+/g, ' '); };
+    if (norm(rows[i][0]) === norm(user) || (rows[i][2] && norm(rows[i][2]) === norm(user))) { found = rows[i]; break; }   // username or full name
   }
   var who = { u: user, name: found ? String(found[2] || user) : '', org: found ? String(found[3] || '') : '' };
   var problem = '';
