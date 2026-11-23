@@ -165,9 +165,12 @@ function log_(who, action, what, detail) {
 }
 
 function sheet_(name) {
-  var id = PropertiesService.getScriptProperties().getProperty('SHEET_ID');
-  if (!id) throw userError_('Login is not set up yet. Denuwan needs to run setupAccess once.');
-  return SpreadsheetApp.openById(id).getSheetByName(name);
+  var props = PropertiesService.getScriptProperties();
+  if (!props.getProperty('SHEET_ID')) {           // first use: make the Access sheet
+    var lock = LockService.getScriptLock(); lock.waitLock(20000);
+    try { if (!props.getProperty('SHEET_ID')) setupAccess(); } finally { lock.releaseLock(); }
+  }
+  return SpreadsheetApp.openById(props.getProperty('SHEET_ID')).getSheetByName(name);
 }
 
 /** Run once (testAssistant also runs it): makes the Access sheet if it is not there, and logs its link. */
