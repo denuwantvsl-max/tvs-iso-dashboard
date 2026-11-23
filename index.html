@@ -144,6 +144,15 @@ button { font-family: inherit; }
   padding: 0 8px 20px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
+.brand .logo {
+  width: 56px; height: 56px;
+  border-radius: 12px;
+  background: #fff;
+  padding: 4px;
+  object-fit: contain;
+  margin-bottom: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
 .brand .mark {
   display: inline-flex;
   align-items: center;
@@ -462,9 +471,10 @@ td.strong { color: var(--text-hi); font-weight: 600; }
 <div class="layout">
 <aside class="sidebar glass">
   <div class="brand">
+    <img class="logo" src="tvs-logo.jpg" alt="TVS Lanka logo" width="56" height="56"/>
     <div class="mark">TVS Lanka · ISO 9001:2015</div>
     <div class="title">Vehicle Assembly Complex<br/>Poruwadanda, Horana</div>
-    <div class="sub">Surveillance 2 — 2nd week of Dec 2026 (date TBC)</div>
+    <div class="sub">Surveillance 2 — 21 Dec 2026</div>
   </div>
   <div class="nav-group">
     <div class="nav-label">Dashboard</div>
@@ -500,7 +510,7 @@ td.strong { color: var(--text-hi); font-weight: 600; }
 
   <div class="alert warn">
     <div>
-      <div class="a-title">🎯 Surveillance 2 — 2nd week of December 2026: focus on Procurement, Stores, Logistics and Sales</div>
+      <div class="a-title">🎯 Surveillance 2 — 21 December 2026: focus on Procurement, Stores, Logistics and Sales</div>
       <div class="a-body">Surveillance 1 (13-Oct-2025) audited System Management, Production, Quality &amp; Transit, HR and Maintenance.
       The processes <b>not</b> audited last time are the most likely to be sampled now: <b>Procurement / supplier evaluation, Stores,
       Logistics / delivery and Sales / customer satisfaction</b> (Finance possible). Prepare these first. MRM, internal audit and NCRs are checked at every audit.
@@ -521,7 +531,7 @@ td.strong { color: var(--text-hi); font-weight: 600; }
   </div>
 
   <div class="grid grid-4" style="margin-top:26px;">
-    <div class="kpi glass warn"><div class="num" id="days-to-audit">—</div><div class="label">Days to Surveillance 2 (week of 07 Dec 2026, date TBC)</div></div>
+    <div class="kpi glass warn"><div class="num" id="days-to-audit">—</div><div class="label">Days to Surveillance 2 (21 Dec 2026)</div></div>
     <div class="kpi glass warn"><div class="num">13 Oct</div><div class="label">Last MRM held (2026) — minutes to upload</div></div>
     <div class="kpi glass ok"><div class="num">6 / 6</div><div class="label">NCRs Closed (incl. IB Joint Audit)</div></div>
     <div class="kpi glass ok"><div class="num">0</div><div class="label">Expired Statutory Certs</div></div>
@@ -618,7 +628,7 @@ td.strong { color: var(--text-hi); font-weight: 600; }
       <tr><td class="strong">Exclusions</td><td>Clause 8.3 (Design & Development) and Clause 8.5.1(f) (Post-Delivery Activities)</td></tr>
       <tr><td class="strong">Certification Body</td><td>Bureau Veritas — Contract CBO/9418</td></tr>
       <tr><td class="strong">Last Audit</td><td>Surveillance 1 — 13 October 2025, on site (see Audit History)</td></tr>
-      <tr><td class="strong">Next Milestone</td><td>Surveillance 2 — 2nd week of December 2026 (date TBC)</td></tr>
+      <tr><td class="strong">Next Milestone</td><td>Surveillance 2 — 21 December 2026</td></tr>
     </table>
   </div>
 
@@ -632,7 +642,7 @@ td.strong { color: var(--text-hi); font-weight: 600; }
 <script>
 (function(){
   var el=document.getElementById('days-to-audit'); if(!el) return;
-  var audit=new Date('2026-12-07T00:00:00+05:30');
+  var audit=new Date('2026-12-21T00:00:00+05:30');
   var now=new Date();
   var days=Math.ceil((audit-now)/86400000);
   el.textContent = days>0 ? days : (days===0 ? 'Today' : 'Done');
