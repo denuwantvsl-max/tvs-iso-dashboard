@@ -64,7 +64,7 @@ function doPost(e) {
     var history = (Array.isArray(body.history) ? body.history : []).slice(-MAX_HISTORY).map(function (h) {
       return { role: h.role === 'model' ? 'model' : 'user', parts: [{ text: String(h.text || '').slice(0, 2000) }] };
     });
-    var answer = ask_(q, history);
+    var answer = ask_(body.lang === 'si' ? q + '\n\n(Please answer in Sinhala; keep document names, codes and links as they are.)' : q, history);
     return json_({ ok: true, answer: answer });
   } catch (err) {
     console.error(err && err.stack || err);

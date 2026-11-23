@@ -466,6 +466,7 @@ td.strong { color: var(--text-hi); font-weight: 600; }
 
 </style>
 <script src="gate.js"></script>
+<script src="i18n.js"></script>
 </head>
 <body>
 <div class="bg-mesh"></div>
@@ -818,7 +819,7 @@ td.strong { color: var(--text-hi); font-weight: 600; }
     add('user', q);
     var wait = add('model', '<span class="iso-ai-dots">Looking it up</span>'); wait.innerHTML = '<span class="iso-ai-dots">Looking it up</span>';
     send.disabled = true;
-    fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ q: q, history: hist.slice(-6), token: window.isoGate ? isoGate.token() : "" }) })
+    fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ q: q, history: hist.slice(-6), token: window.isoGate ? isoGate.token() : "", lang: window.isoLang ? isoLang() : "en" }) })
       .then(function(r){ return r.text(); }).then(function(t){ try { return JSON.parse(t); } catch (e) { return { ok: false, error: 'The assistant is not available right now. Please try again later.' }; } })
       .then(function(res){
         wait.remove();

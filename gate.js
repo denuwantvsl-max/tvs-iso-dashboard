@@ -20,7 +20,7 @@
 
   var css = document.createElement('style');
   css.textContent =
-    'html.gate-locked body>:not(#isoGate){display:none!important}' +
+    'html.gate-locked body>:not(#isoGate):not(#isoLang){display:none!important}' +
     '#isoGate{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;' +
     'background:radial-gradient(circle at 30% 20%,#123247,#070d1a 70%);font-family:Inter,system-ui,sans-serif}' +
     '#isoGate form{width:min(380px,100%);padding:30px 28px;border-radius:22px;border:1px solid rgba(255,255,255,.14);' +
