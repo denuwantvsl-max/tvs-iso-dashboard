@@ -465,6 +465,7 @@ td.strong { color: var(--text-hi); font-weight: 600; }
 .quicklink .qd { font-size: 11.5px; color: var(--text-low); line-height: 1.5; }
 
 </style>
+<script src="gate.js"></script>
 </head>
 <body>
 <div class="bg-mesh"></div>
@@ -733,7 +734,7 @@ td.strong { color: var(--text-hi); font-weight: 600; }
     add('user', q);
     var wait = add('model', '<span class="iso-ai-dots">Looking it up</span>'); wait.innerHTML = '<span class="iso-ai-dots">Looking it up</span>';
     send.disabled = true;
-    fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ q: q, history: hist.slice(-6) }) })
+    fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ q: q, history: hist.slice(-6), token: window.isoGate ? isoGate.token() : "" }) })
       .then(function(r){ return r.text(); }).then(function(t){ try { return JSON.parse(t); } catch (e) { return { ok: false, error: 'The assistant is not available right now. Please try again later.' }; } })
       .then(function(res){
         wait.remove();
@@ -741,7 +742,7 @@ td.strong { color: var(--text-hi); font-weight: 600; }
           hist.push({ role: 'user', text: q }, { role: 'model', text: res.answer });
           hist = hist.slice(-20); sessionStorage.setItem(KEY, JSON.stringify(hist));
           add('model', res.answer);
-        } else add('model', res.error || 'Sorry, no answer. Please try again.', 'err');
+        } else { add('model', res.error || 'Sorry, no answer. Please try again.', 'err'); if (res.auth === false && window.isoGate) isoGate.expired(); }
       })
       .catch(function(){ wait.remove(); add('model', 'Could not reach the assistant. Check the internet connection, or the assistant may not be switched on yet.', 'err'); })
       .then(function(){ send.disabled = false; input.focus(); });
