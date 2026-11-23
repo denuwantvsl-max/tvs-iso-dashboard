@@ -165,8 +165,22 @@ function log_(who, action, what, detail) {
   } catch (err) { console.error('log failed: ' + err); }
 }
 
+var ACCESS_SHEET_ID = '1ggr-0vQwckjfeK7Sels4QJvSYpYHyUMKELLo7xgw3qc';   // made 2026-11-23
+
+/** Repairs Script Properties if an API key was pasted into SHEET_ID (moves it to GEMINI_API_KEY). */
+function fixProps_() {
+  var props = PropertiesService.getScriptProperties();
+  var sid = props.getProperty('SHEET_ID') || '';
+  if (/^(AIza|AQ\.)/.test(sid)) {
+    if (!props.getProperty('GEMINI_API_KEY')) props.setProperty('GEMINI_API_KEY', sid);
+    props.setProperty('SHEET_ID', ACCESS_SHEET_ID);
+  }
+  if (!props.getProperty('SHEET_ID')) props.setProperty('SHEET_ID', ACCESS_SHEET_ID);
+}
+
 function sheet_(name) {
   var props = PropertiesService.getScriptProperties();
+  fixProps_();
   if (!props.getProperty('SHEET_ID')) {           // first use: make the Access sheet
     var lock = LockService.getScriptLock(); lock.waitLock(20000);
     try { if (!props.getProperty('SHEET_ID')) setupAccess(); } finally { lock.releaseLock(); }
