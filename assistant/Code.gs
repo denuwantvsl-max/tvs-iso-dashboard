@@ -126,7 +126,7 @@ function login_(user, pin) {
     var norm = function (s) { return String(s).trim().toLowerCase().replace(/\s+/g, ' '); };
     if (norm(rows[i][0]) === norm(user) || (rows[i][2] && norm(rows[i][2]) === norm(user))) { found = rows[i]; break; }   // username or full name
   }
-  var who = { u: user, name: found ? String(found[2] || user) : '', org: found ? String(found[3] || '') : '' };
+  var who = { u: found ? String(found[0]).trim().toLowerCase() : user, name: found ? String(found[2] || user) : '', org: found ? String(found[3] || '') : '' };
   var problem = '';
   if (!found || !String(found[1]).trim() || String(found[1]).trim() !== pin) problem = 'Wrong username or PIN.';
   else if (!/^y/i.test(String(found[4] || 'Yes').trim())) problem = 'This login is switched off. Ask Denuwan.';
