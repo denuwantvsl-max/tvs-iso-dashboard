@@ -561,7 +561,7 @@ Ticks are saved for everyone and the access log records who ticked. Add a short 
 Note || සටහන
 Could not load the saved ticks. Refresh the page. || සුරැකි සලකුණු පූරණය කළ නොහැකි විය. පිටුව නැවුම් කරන්න.
 Could not save. Check the connection and try again. || සුරැකිය නොහැකි විය. සම්බන්ධතාව පරීක්ෂා කර නැවත උත්සාහ කරන්න.
-The monthly plant management meetings and their action tracker are not part of the ISO management review. They are kept in the CMMS (General MRM tab and meeting page). || මාසික කම්හල් කළමනාකරණ රැස්වීම් සහ ඒවායේ ක්‍රියා අනුගාමිකය ISO කළමනාකරණ සමාලෝචනයේ කොටසක් නොවේ. ඒවා CMMS හි (සාමාන්‍ය MRM ටැබය සහ රැස්වීම් පිටුව) තබා ඇත.
+The monthly plant management meetings and their action tracker are not part of the ISO management review. They are kept separately on the Plant Operations manager's own dashboard. || මාසික කම්හල් කළමනාකරණ රැස්වීම් සහ ඒවායේ ක්‍රියා අනුගාමිකය ISO කළමනාකරණ සමාලෝචනයේ කොටසක් නොවේ. ඒවා කම්හල් මෙහෙයුම් කළමනාකරුගේම dashboard එකේ වෙනම තබා ඇත.
 What the review must cover || සමාලෝචනයෙන් ආවරණය විය යුතු දේ
 ISO 9001:2015 Clause 9.3 || ISO 9001:2015 වගන්තිය 9.3
 Inputs (9.3.2): || යෙදවුම් (9.3.2):
