@@ -464,6 +464,25 @@ td.strong { color: var(--text-hi); font-weight: 600; }
 .quicklink .qt { font-size: 13.5px; font-weight: 700; margin-bottom: 5px; color: var(--text-hi); }
 .quicklink .qd { font-size: 11.5px; color: var(--text-low); line-height: 1.5; }
 
+
+.todo { padding: 20px 22px; }
+.todo-head { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-mid); }
+.todo-head b { color: var(--text-hi); font-size: 15px; }
+.todo-bar { flex: 1; height: 8px; border-radius: 6px; background: rgba(255,255,255,0.08); overflow: hidden; max-width: 320px; }
+.todo-bar i { display: block; height: 100%; width: 0; background: var(--teal); border-radius: 6px; transition: width .3s; }
+.todo-hint { font-size: 12px; color: var(--text-low); margin: 6px 0 4px; }
+.todo-err { font-size: 12.5px; color: var(--red); margin: 6px 0; }
+.todo-group { font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--teal); margin: 16px 0 6px; }
+.todo-item { display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; border-radius: var(--r-sm); cursor: pointer; font-size: 13.5px; color: var(--text-hi); line-height: 1.45; }
+.todo-item:hover { background: rgba(255,255,255,0.04); }
+.todo-item input[type=checkbox] { width: 18px; height: 18px; margin-top: 1px; accent-color: #5ee6cf; flex: none; cursor: pointer; }
+.todo-item.done .todo-txt > span:first-child { color: var(--text-low); text-decoration: line-through; }
+.todo-item.saving { opacity: .6; }
+.todo-txt { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }
+.todo-by { font-size: 11.5px; color: var(--teal); }
+.todo-by:empty { display: none; }
+.todo-note { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--text-mid); font: inherit; font-size: 12px; padding: 4px 8px; max-width: 520px; }
+.todo-note:focus { outline: none; border-color: var(--teal); color: var(--text-hi); }
 </style>
 <script src="gate.js"></script>
 <script src="i18n.js"></script>
@@ -527,6 +546,37 @@ td.strong { color: var(--text-hi); font-weight: 600; }
     </table>
   </div>
 
+  <div class="section-title">2026 MRM — to-do list <span class="count">Tick each point when the 2026 minutes cover it</span></div>
+  <div class="panel glass todo">
+    <div class="todo-head"><div class="todo-bar"><i id="todoFill"></i></div><b id="todoCount">0/20</b> <span>items done</span></div>
+    <div class="todo-hint">Ticks are saved for everyone and the access log records who ticked. Add a short note if useful.</div>
+    <div class="todo-err" id="todoErr" hidden></div>
+    <div class="todo-group">Meeting record</div>
+    <label class="todo-item" data-todo="rec-agenda"><input type="checkbox" disabled><span class="todo-txt"><span>Agenda of the 13-Oct-2026 meeting with all 12 review topics</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="rec-attend"><input type="checkbox" disabled><span class="todo-txt"><span>Attendance list includes top management and Halcyon (consultant)</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <div class="todo-group">Inputs to cover in the minutes (Clause 9.3.2)</div>
+    <label class="todo-item" data-todo="in-a"><input type="checkbox" disabled><span class="todo-txt"><span>a) Status of each action from the 2025 MRM (08-Oct-2025): open or closed, with dates</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="in-b"><input type="checkbox" disabled><span class="todo-txt"><span>b) Changes in external and internal issues (context, interested parties)</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="in-c1"><input type="checkbox" disabled><span class="todo-txt"><span>c1) Customer satisfaction and dealer feedback, with the 2026 figure</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="in-c2"><input type="checkbox" disabled><span class="todo-txt"><span>c2) Quality objectives: actual 2026 results against each target (TVS/QMS/OMT/01)</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="in-c3"><input type="checkbox" disabled><span class="todo-txt"><span>c3) Process performance and conformity of products (missing in the 2024 minutes)</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="in-c4"><input type="checkbox" disabled><span class="todo-txt"><span>c4) Nonconformities and corrective actions (NCR register status)</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="in-c5"><input type="checkbox" disabled><span class="todo-txt"><span>c5) Monitoring and measurement results, including calibration status</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="in-c6"><input type="checkbox" disabled><span class="todo-txt"><span>c6) Audit results: 2026 internal audit and Surveillance 1 (Oct 2025) findings closed</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="in-c7"><input type="checkbox" disabled><span class="todo-txt"><span>c7) Performance of external providers: 2026 supplier evaluations</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="in-d"><input type="checkbox" disabled><span class="todo-txt"><span>d) Adequacy of resources</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="in-e"><input type="checkbox" disabled><span class="todo-txt"><span>e) Effectiveness of actions on risks and opportunities (2026 update, not copied from 2025)</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="in-f"><input type="checkbox" disabled><span class="todo-txt"><span>f) Opportunities for improvement (for example digital tools: CMMS, ISO dashboard, AI)</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <div class="todo-group">Outputs to record (Clause 9.3.3)</div>
+    <label class="todo-item" data-todo="out-imp"><input type="checkbox" disabled><span class="todo-txt"><span>Decisions on improvement opportunities, each with an owner and a target date</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="out-qms"><input type="checkbox" disabled><span class="todo-txt"><span>Any changes needed to the QMS</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="out-res"><input type="checkbox" disabled><span class="todo-txt"><span>Resource needs</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <div class="todo-group">Finish before Surveillance 2 (21-Dec-2026)</div>
+    <label class="todo-item" data-todo="fin-typo"><input type="checkbox" disabled><span class="todo-txt"><span>Template heading fixed ("quality management system", not "educational organizations")</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="fin-sign"><input type="checkbox" disabled><span class="todo-txt"><span>Minutes signed by top management and Halcyon, not only the MR</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+    <label class="todo-item" data-todo="fin-upload"><input type="checkbox" disabled><span class="todo-txt"><span>Agenda and minutes uploaded to the Drive MRM folder and linked on this page</span><span class="todo-by"></span><input type="text" class="todo-note" maxlength="300" placeholder="Note" disabled></span></label>
+  </div>
+
   <div class="section-title">MRM Records <span class="count">Agenda and minutes</span></div>
   <div class="panel glass">
     <div class="doc-list">
@@ -549,18 +599,10 @@ td.strong { color: var(--text-hi); font-weight: 600; }
     </div>
   </div>
 
-  <div class="section-title">What the review must cover <span class="count">ISO 9001:2015 Clause 9.3</span></div>
-  <div class="panel glass">
-    <div style="font-size:13px;color:var(--text-mid);line-height:1.7;">
-      <b>Inputs (9.3.2):</b> status of actions from the previous review; changes in internal and external issues; customer satisfaction and feedback; quality objectives; process performance and product conformity; nonconformities and corrective actions; monitoring and measurement results; audit results; performance of external providers; adequacy of resources; effectiveness of actions on risks and opportunities; opportunities for improvement.<br/>
-      <b>Outputs (9.3.3):</b> decisions and actions on improvement opportunities, any changes needed to the QMS, and resource needs. Keep the minutes as documented information.
-    </div>
-  </div>
-
   <div class="section-title">Monthly Plant Meetings</div>
   <div class="panel glass">
     <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">
-      The monthly plant management meetings and their action tracker are not part of the ISO management review. They are kept in the CMMS (General MRM).
+      The monthly plant management meetings and their action tracker are not part of the ISO management review. They are kept in the CMMS (General MRM tab and meeting page).
     </div>
   </div>
 
@@ -675,5 +717,58 @@ td.strong { color: var(--text-hi); font-weight: 600; }
 })();
 </script>
 <!-- /ISO assistant -->
+
+<script>
+/* 2026 MRM to-do: ticks saved in the Access sheet (tab "MRM Todo") through the dashboard backend. */
+(function () {
+  var API = 'https://script.google.com/macros/s/AKfycbxqYe1v3W4KRSIdolJx6gSwl8X5efK9eaK_THWYL55H6sTrdy7Cd-HVAk3pGG1rTebzKg/exec';
+  var rows = document.querySelectorAll('[data-todo]'), errBox = document.getElementById('todoErr');
+  function tok() { return window.isoGate ? isoGate.token() : ''; }
+  function post(body) {
+    body.token = tok();
+    return fetch(API, { method: 'POST', body: JSON.stringify(body) }).then(function (r) { return r.json(); }).then(function (r) {
+      if (r && r.auth === false && window.isoGate) isoGate.expired();
+      if (!r || !r.ok) throw new Error((r && r.error) || 'error');
+      return r;
+    });
+  }
+  function err(t) { errBox.textContent = t || ''; errBox.hidden = !t; if (t && window.isoLang && window.isoTranslate) isoTranslate(errBox); }
+  function count() {
+    var done = 0; rows.forEach(function (r) { if (r.querySelector('input[type=checkbox]').checked) done++; });
+    document.getElementById('todoCount').textContent = done + '/' + rows.length;
+    document.getElementById('todoFill').style.width = Math.round(done * 100 / rows.length) + '%';
+  }
+  function show(row, it) {
+    var cb = row.querySelector('input[type=checkbox]'), note = row.querySelector('.todo-note');
+    cb.checked = !!it.done; row.classList.toggle('done', !!it.done);
+    if (document.activeElement !== note) note.value = it.note || '';
+    row.querySelector('.todo-by').textContent = it.by ? '✔ ' + it.by + ' · ' + it.time : '';
+  }
+  function save(row) {
+    var cb = row.querySelector('input[type=checkbox]'), note = row.querySelector('.todo-note');
+    row.classList.add('saving');
+    post({ action: 'mrmTodoSet', id: row.getAttribute('data-todo'), done: cb.checked, note: note.value.trim() })
+      .then(function (r) { err(''); show(row, r.item); })
+      .catch(function () { err('Could not save. Check the connection and try again.'); })
+      .then(function () { row.classList.remove('saving'); count(); });
+  }
+  rows.forEach(function (row) {
+    var cb = row.querySelector('input[type=checkbox]'), note = row.querySelector('.todo-note');
+    cb.addEventListener('change', function () { row.classList.toggle('done', cb.checked); count(); save(row); });
+    note.addEventListener('change', function () { save(row); });
+  });
+  function load() {
+    if (!tok()) { setTimeout(load, 1500); return; }
+    post({ action: 'mrmTodo' }).then(function (r) {
+      rows.forEach(function (row) {
+        row.querySelectorAll('input').forEach(function (i) { i.disabled = false; });
+        show(row, r.items[row.getAttribute('data-todo')] || {});
+      });
+      count();
+    }).catch(function () { err('Could not load the saved ticks. Refresh the page.'); });
+  }
+  load();
+})();
+</script>
 </body>
 </html>

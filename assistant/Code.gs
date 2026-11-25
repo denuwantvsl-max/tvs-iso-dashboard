@@ -57,6 +57,8 @@ function doPost(e) {
     var who = session_(body.token);
     if (!who) return json_({ ok: false, auth: false, error: 'Please log in again.' });
     if (body.action === 'view') { log_(who, 'View', String(body.page || '').slice(0, 200), ''); return json_({ ok: true, name: who.name }); }
+    if (body.action === 'mrmTodo') return json_({ ok: true, items: todoRead_() });
+    if (body.action === 'mrmTodoSet') return json_(todoSet_(who, body));
     if (body.action === 'logout') { CacheService.getScriptCache().remove('tok_' + body.token); log_(who, 'Logout', '', ''); return json_({ ok: true }); }
     var q = String(body.q || '').trim();
     if (q) log_(who, 'Question', q.slice(0, 500), '');
@@ -207,6 +209,45 @@ function setupAccess() {
   [users, log].forEach(function (s) { s.setFrozenRows(1); s.getRange('1:1').setFontWeight('bold'); });
   props.setProperty('SHEET_ID', ss.getId());
   console.log('Access sheet made: ' + ss.getUrl());
+}
+
+/* ------------------------------------------------------------------ 2026 MRM to-do (mrm.html) */
+// Tab "MRM Todo" in the Access sheet: one row per item that was ever ticked. Any logged-in user may tick; the Log shows who.
+
+function todoSheet_() {
+  var sh = sheet_('MRM Todo');
+  if (sh) return sh;
+  var ss = SpreadsheetApp.openById(PropertiesService.getScriptProperties().getProperty('SHEET_ID'));
+  sh = ss.insertSheet('MRM Todo');
+  sh.getRange(1, 1, 1, 5).setValues([['Item', 'Done', 'Note', 'By', 'Time']]).setFontWeight('bold');
+  sh.setFrozenRows(1);
+  return sh;
+}
+
+function todoRead_() {
+  var sh = todoSheet_(), out = {};
+  if (sh.getLastRow() < 2) return out;
+  sh.getRange(2, 1, sh.getLastRow() - 1, 5).getValues().forEach(function (r) {
+    if (r[0]) out[String(r[0])] = { done: r[1] === true || String(r[1]) === 'Yes', note: String(r[2] || ''), by: String(r[3] || ''),
+      time: r[4] instanceof Date ? Utilities.formatDate(r[4], 'Asia/Colombo', 'yyyy-MM-dd HH:mm') : String(r[4] || '') };
+  });
+  return out;
+}
+
+function todoSet_(who, body) {
+  var id = String(body.id || '').replace(/[^a-z0-9-]/gi, '').slice(0, 20);
+  if (!id) return { ok: false, error: 'Missing item.' };
+  var note = String(body.note === undefined ? '' : body.note).slice(0, 500);
+  var lock = LockService.getScriptLock(); lock.waitLock(10000);
+  try {
+    var sh = todoSheet_(), n = sh.getLastRow(), row = 0;
+    if (n >= 2) sh.getRange(2, 1, n - 1, 1).getValues().forEach(function (r, i) { if (String(r[0]) === id) row = i + 2; });
+    if (!row) { row = Math.max(n, 1) + 1; sh.getRange(row, 1).setValue(id); }
+    var time = Utilities.formatDate(new Date(), 'Asia/Colombo', 'yyyy-MM-dd HH:mm');
+    sh.getRange(row, 2, 1, 4).setValues([[body.done ? 'Yes' : 'No', note, who.name, time]]);
+  } finally { lock.releaseLock(); }
+  log_(who, 'MRM to-do', id, (body.done ? 'done' : 'not done') + (note ? ' — ' + note : ''));
+  return { ok: true, item: { done: !!body.done, note: note, by: who.name, time: time } };
 }
 
 /* ------------------------------------------------------------------ knowledge */

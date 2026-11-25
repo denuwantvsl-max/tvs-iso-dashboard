@@ -530,6 +530,38 @@ MRM Minutes — 2025.10.08 || MRM රැස්වීම් වාර්තාව
 MRM Agenda — 2024.08.20 || MRM න්‍යාය පත්‍රය — 2024.08.20
 MRM Minutes — 2024.08.20 || MRM රැස්වීම් වාර්තාව — 2024.08.20
 2024 · Word || 2024 · Word
+Meeting record || රැස්වීම් වාර්තාව
+Inputs to cover in the minutes (Clause 9.3.2) || රැස්වීම් වාර්තාවේ ආවරණය කළ යුතු ආදාන (වගන්තිය 9.3.2)
+Outputs to record (Clause 9.3.3) || වාර්තා කළ යුතු ප්‍රතිදාන (වගන්තිය 9.3.3)
+Finish before Surveillance 2 (21-Dec-2026) || අධීක්ෂණ විගණනය 2 ට (21-Dec-2026) පෙර අවසන් කරන්න
+Agenda of the 13-Oct-2026 meeting with all 12 review topics || 13-Oct-2026 රැස්වීමේ න්‍යාය පත්‍රය, සමාලෝචන මාතෘකා 12 සමඟ
+Attendance list includes top management and Halcyon (consultant) || පැමිණීමේ ලැයිස්තුවට ඉහළ කළමනාකාරිත්වය සහ Halcyon (උපදේශක) ඇතුළත්
+a) Status of each action from the 2025 MRM (08-Oct-2025): open or closed, with dates || a) 2025 MRM (08-Oct-2025) හි එක් එක් ක්‍රියාවේ තත්ත්වය: විවෘත හෝ වසා ඇත, දින සමඟ
+b) Changes in external and internal issues (context, interested parties) || b) බාහිර සහ අභ්‍යන්තර කරුණුවල වෙනස්කම් (සන්දර්භය, උනන්දුවක් දක්වන පාර්ශ්ව)
+c1) Customer satisfaction and dealer feedback, with the 2026 figure || c1) පාරිභෝගික තෘප්තිය සහ අලෙවි නියෝජිත ප්‍රතිචාර, 2026 අගය සමඟ
+c2) Quality objectives: actual 2026 results against each target (TVS/QMS/OMT/01) || c2) තත්ත්ව අරමුණු: එක් එක් ඉලක්කයට එරෙහිව 2026 සැබෑ ප්‍රතිඵල (TVS/QMS/OMT/01)
+c3) Process performance and conformity of products (missing in the 2024 minutes) || c3) ක්‍රියාවලි කාර්ය සාධනය සහ නිෂ්පාදනවල අනුකූලතාව (2024 වාර්තාවේ නැත)
+c4) Nonconformities and corrective actions (NCR register status) || c4) නොගැළපීම් සහ නිවැරදි කිරීමේ ක්‍රියා (NCR ලේඛනයේ තත්ත්වය)
+c5) Monitoring and measurement results, including calibration status || c5) අධීක්ෂණ සහ මිනුම් ප්‍රතිඵල, ක්‍රමාංකන තත්ත්වය ද ඇතුළුව
+c6) Audit results: 2026 internal audit and Surveillance 1 (Oct 2025) findings closed || c6) විගණන ප්‍රතිඵල: 2026 අභ්‍යන්තර විගණනය සහ අධීක්ෂණ විගණනය 1 (2025 ඔක්.) සොයාගැනීම් වසා දැමීම
+c7) Performance of external providers: 2026 supplier evaluations || c7) බාහිර සැපයුම්කරුවන්ගේ කාර්ය සාධනය: 2026 සැපයුම්කරු ඇගයීම්
+d) Adequacy of resources || d) සම්පත්වල ප්‍රමාණවත් බව
+e) Effectiveness of actions on risks and opportunities (2026 update, not copied from 2025) || e) අවදානම් සහ අවස්ථා සඳහා ගත් ක්‍රියාවල සඵලතාව (2026 යාවත්කාලීනය, 2025 පිටපතක් නොවේ)
+f) Opportunities for improvement (for example digital tools: CMMS, ISO dashboard, AI) || f) වැඩිදියුණු කිරීමේ අවස්ථා (උදා. ඩිජිටල් මෙවලම්: CMMS, ISO dashboard, AI)
+Decisions on improvement opportunities, each with an owner and a target date || වැඩිදියුණු කිරීමේ අවස්ථා පිළිබඳ තීරණ, එක් එක් සඳහා වගකිවයුත්තෙකු සහ ඉලක්ක දිනයක් සමඟ
+Any changes needed to the QMS || QMS හි අවශ්‍ය වෙනස්කම්
+Resource needs || සම්පත් අවශ්‍යතා
+Template heading fixed ("quality management system", not "educational organizations") || ආකෘතියේ මාතෘකාව නිවැරදි කර ඇත ("quality management system", "educational organizations" නොවේ)
+Minutes signed by top management and Halcyon, not only the MR || රැස්වීම් වාර්තාව MR පමණක් නොව ඉහළ කළමනාකාරිත්වය සහ Halcyon අත්සන් කර ඇත
+Agenda and minutes uploaded to the Drive MRM folder and linked on this page || න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව Drive MRM ෆෝල්ඩරයට උඩුගත කර මෙම පිටුවට සම්බන්ධ කර ඇත
+2026 MRM — to-do list || 2026 MRM — කළ යුතු දේ ලැයිස්තුව
+Tick each point when the 2026 minutes cover it || 2026 රැස්වීම් වාර්තාවේ ආවරණය වූ විට එක් එක් කරුණ සලකුණු කරන්න
+items done || අයිතම අවසන්
+Ticks are saved for everyone and the access log records who ticked. Add a short note if useful. || සලකුණු සැමට සුරැකෙන අතර කවුරුන් සලකුණු කළේද යන්න ප්‍රවේශ ලොගයේ සටහන් වේ. ප්‍රයෝජනවත් නම් කෙටි සටහනක් එක් කරන්න.
+Note || සටහන
+Could not load the saved ticks. Refresh the page. || සුරැකි සලකුණු පූරණය කළ නොහැකි විය. පිටුව නැවුම් කරන්න.
+Could not save. Check the connection and try again. || සුරැකිය නොහැකි විය. සම්බන්ධතාව පරීක්ෂා කර නැවත උත්සාහ කරන්න.
+The monthly plant management meetings and their action tracker are not part of the ISO management review. They are kept in the CMMS (General MRM tab and meeting page). || මාසික කම්හල් කළමනාකරණ රැස්වීම් සහ ඒවායේ ක්‍රියා අනුගාමිකය ISO කළමනාකරණ සමාලෝචනයේ කොටසක් නොවේ. ඒවා CMMS හි (සාමාන්‍ය MRM ටැබය සහ රැස්වීම් පිටුව) තබා ඇත.
 What the review must cover || සමාලෝචනයෙන් ආවරණය විය යුතු දේ
 ISO 9001:2015 Clause 9.3 || ISO 9001:2015 වගන්තිය 9.3
 Inputs (9.3.2): || යෙදවුම් (9.3.2):
