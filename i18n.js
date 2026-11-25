@@ -512,7 +512,7 @@ Done || අවසන්
 13 Oct || ඔක්. 13
 The yearly ISO 9001 management review, held with our ISO consultants Halcyon (Pvt) Ltd. One meeting a year — agenda and minutes for each year. || අපගේ ISO උපදේශකයින් වන Halcyon (Pvt) Ltd සමඟ පවත්වන වාර්ෂික ISO 9001 කළමනාකරණ සමාලෝචනය. වසරකට එක් රැස්වීමක් — සෑම වසරකටම න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව.
 🗂️ 2026 MRM held 13-Oct-2026 — agenda and minutes to be uploaded || 🗂️ 2026 MRM 13-Oct-2026 පැවැත්විණි — න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව උඩුගත කළ යුතුයි
-Upload the 2026 agenda and minutes before Surveillance 2 (21-Dec-2026). The 2024 MRM record is also missing from Drive. || අධීක්ෂණ විගණනය 2 ට (21-Dec-2026) පෙර 2026 න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව උඩුගත කරන්න. 2024 MRM වාර්තාවද Drive හි නැත.
+Upload the 2026 agenda and minutes before Surveillance 2 (21-Dec-2026). || අධීක්ෂණ විගණනය 2 ට (21-Dec-2026) පෙර 2026 න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව උඩුගත කරන්න.
 Yearly ISO MRM || වාර්ෂික ISO MRM
 With Halcyon (Pvt) Ltd · one meeting a year || Halcyon (Pvt) Ltd සමඟ · වසරකට එක් රැස්වීමක්
 Year || වසර
@@ -527,6 +527,9 @@ Agenda and minutes || න්‍යාය පත්‍රය සහ රැස්�
 MRM Agenda — 2025.10.08 || MRM න්‍යාය පත්‍රය — 2025.10.08
 MRM Minutes — 2025.10.08 || MRM රැස්වීම් වාර්තාව — 2025.10.08
 2025 · Word || 2025 · Word
+MRM Agenda — 2024.08.20 || MRM න්‍යාය පත්‍රය — 2024.08.20
+MRM Minutes — 2024.08.20 || MRM රැස්වීම් වාර්තාව — 2024.08.20
+2024 · Word || 2024 · Word
 What the review must cover || සමාලෝචනයෙන් ආවරණය විය යුතු දේ
 ISO 9001:2015 Clause 9.3 || ISO 9001:2015 වගන්තිය 9.3
 Inputs (9.3.2): || යෙදවුම් (9.3.2):
@@ -536,9 +539,9 @@ decisions and actions on improvement opportunities, any changes needed to the QM
 Monthly Plant Meetings || මාසික කම්හල් රැස්වීම්
 The monthly plant management meetings and their action tracker are not part of the ISO management review. They are kept in the CMMS (General MRM). || මාසික කම්හල් කළමනාකරණ රැස්වීම් සහ ඒවායේ ක්‍රියාමාර්ග පසුවිපරම ISO කළමනාකරණ සමාලෝචනයේ කොටසක් නොවේ. ඒවා CMMS (General MRM) හි තබා ඇත.
 🗂️ 2026 MRM with Halcyon held 13-Oct-2026 — minutes to be uploaded || 🗂️ Halcyon සමඟ 2026 MRM 13-Oct-2026 පැවැත්විණි — රැස්වීම් වාර්තාව උඩුගත කළ යුතුයි
-The yearly ISO management review with our ISO consultants Halcyon was held on 13-Oct-2026. Upload its agenda and minutes before Surveillance 2. The 2024 MRM record is also missing from Drive. || අපගේ ISO උපදේශකයින් වන Halcyon සමඟ වාර්ෂික ISO කළමනාකරණ සමාලෝචනය 13-Oct-2026 පැවැත්විණි. අධීක්ෂණ විගණනය 2 ට පෙර එහි න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව උඩුගත කරන්න. 2024 MRM වාර්තාවද Drive හි නැත.
+The yearly ISO management review with our ISO consultants Halcyon was held on 13-Oct-2026. Upload its agenda and minutes before Surveillance 2. || අපගේ ISO උපදේශකයින් වන Halcyon සමඟ වාර්ෂික ISO කළමනාකරණ සමාලෝචනය 13-Oct-2026 පැවැත්විණි. අධීක්ෂණ විගණනය 2 ට පෙර එහි න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව උඩුගත කරන්න.
 Last ISO MRM with Halcyon (2026) — minutes to upload || Halcyon සමඟ අවසන් ISO MRM (2026) — රැස්වීම් වාර්තාව උඩුගත කළ යුතුයි
-Upload the 13-Oct-2026 MRM agenda + minutes (Halcyon), and the 2024 MRM record || 13-Oct-2026 MRM න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව (Halcyon) සහ 2024 MRM වාර්තාව උඩුගත කරන්න
+Upload the 13-Oct-2026 MRM agenda + minutes (Halcyon) || 13-Oct-2026 MRM න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව (Halcyon) උඩුගත කරන්න
 The yearly ISO management review with Halcyon — agenda and minutes for 2024, 2025 and 2026. || Halcyon සමඟ වාර්ෂික ISO කළමනාකරණ සමාලෝචනය — 2024, 2025 සහ 2026 න්‍යාය පත්‍ර සහ රැස්වීම් වාර්තා.
 Until 27.06.2027 || 27.06.2027 දක්වා
 Until 08.08.2027 || 08.08.2027 දක්වා

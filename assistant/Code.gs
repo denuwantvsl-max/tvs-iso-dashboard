@@ -13,7 +13,7 @@ var SITE = 'https://denuwantvsl-max.github.io/tvs-iso-dashboard/';
 var PAGES = ['index.html', 'statutory-certificates.html', 'factory-engineer-certifications.html', 'ncr-register.html',
   'mrm.html', 'calibration.html', 'clauses.html', 'audit-history.html', 'department-objectives.html'];
 var DRIVE_ROOT = '1fI8lnC75AIHqGL_A47RscJQQVcNP-9Ax';   // ISO DASHBOARD
-var KNOW_VER = '20261125';   // change to make the assistant re-read the site and Drive at once
+var KNOW_VER = '20261125b';   // change to make the assistant re-read the site and Drive at once
 var CACHE_SECONDS = 21600;                              // 6 h (CacheService maximum)
 
 var GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/';
@@ -29,7 +29,7 @@ var PERSONA = [
   'Poruwadanda, Horana, Sri Lanka). Management Representative: Denuwan Chamara, Manager - Plant Operations.',
   'Certification: Bureau Veritas, contract CBO/9418, scope "Assembling of Motorcycles", exclusions 8.3 and 8.5.1(f).',
   'MRM (Clause 9.3) here means ONLY the yearly ISO management review held with the ISO consultants Halcyon (Pvt) Ltd,',
-  'one meeting a year (2024, 2025 on 08-Oct-2025, 2026 on 13-Oct-2026). Monthly plant meetings are not the ISO MRM and are kept in the CMMS.',
+  'one meeting a year (2024 on 20-Aug-2024, 2025 on 08-Oct-2025, 2026 on 13-Oct-2026). Monthly plant meetings are not the ISO MRM and are kept in the CMMS.',
   '',
   'Your job: help staff and auditors quickly find ISO records and understand the status of the QMS.',
   'Rules:',
