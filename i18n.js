@@ -510,6 +510,36 @@ Measuring equipment competence || මිනුම් උපකරණ නිප�
 Today || අද
 Done || අවසන්
 13 Oct || ඔක්. 13
+The yearly ISO 9001 management review, held with our ISO consultants Halcyon (Pvt) Ltd. One meeting a year — agenda and minutes for each year. || අපගේ ISO උපදේශකයින් වන Halcyon (Pvt) Ltd සමඟ පවත්වන වාර්ෂික ISO 9001 කළමනාකරණ සමාලෝචනය. වසරකට එක් රැස්වීමක් — සෑම වසරකටම න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව.
+🗂️ 2026 MRM held 13-Oct-2026 — agenda and minutes to be uploaded || 🗂️ 2026 MRM 13-Oct-2026 පැවැත්විණි — න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව උඩුගත කළ යුතුයි
+Upload the 2026 agenda and minutes before Surveillance 2 (21-Dec-2026). The 2024 MRM record is also missing from Drive. || අධීක්ෂණ විගණනය 2 ට (21-Dec-2026) පෙර 2026 න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව උඩුගත කරන්න. 2024 MRM වාර්තාවද Drive හි නැත.
+Yearly ISO MRM || වාර්ෂික ISO MRM
+With Halcyon (Pvt) Ltd · one meeting a year || Halcyon (Pvt) Ltd සමඟ · වසරකට එක් රැස්වීමක්
+Year || වසර
+Meeting date || රැස්වීම් දිනය
+Records || වාර්තා
+Agenda and minutes not on Drive yet || න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව තවම Drive හි නැත
+Record needed || වාර්තාව අවශ්‍යයි
+Agenda and minutes (Word) || න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව (Word)
+On file || ගොනුවේ ඇත
+Agenda and minutes to upload || න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව උඩුගත කළ යුතුයි
+Agenda and minutes || න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව
+MRM Agenda — 2025.10.08 || MRM න්‍යාය පත්‍රය — 2025.10.08
+MRM Minutes — 2025.10.08 || MRM රැස්වීම් වාර්තාව — 2025.10.08
+2025 · Word || 2025 · Word
+What the review must cover || සමාලෝචනයෙන් ආවරණය විය යුතු දේ
+ISO 9001:2015 Clause 9.3 || ISO 9001:2015 වගන්තිය 9.3
+Inputs (9.3.2): || යෙදවුම් (9.3.2):
+status of actions from the previous review; changes in internal and external issues; customer satisfaction and feedback; quality objectives; process performance and product conformity; nonconformities and corrective actions; monitoring and measurement results; audit results; performance of external providers; adequacy of resources; effectiveness of actions on risks and opportunities; opportunities for improvement. || පෙර සමාලෝචනයේ ක්‍රියාමාර්ගවල තත්ත්වය; අභ්‍යන්තර සහ බාහිර කරුණුවල වෙනස්කම්; පාරිභෝගික තෘප්තිය සහ ප්‍රතිපෝෂණ; තත්ත්ව අරමුණු; ක්‍රියාවලි කාර්යසාධනය සහ නිෂ්පාදන අනුකූලතාව; අනනුකූලතා සහ නිවැරදි කිරීමේ ක්‍රියාමාර්ග; අධීක්ෂණ සහ මිනුම් ප්‍රතිඵල; විගණන ප්‍රතිඵල; බාහිර සැපයුම්කරුවන්ගේ කාර්යසාධනය; සම්පත්වල ප්‍රමාණවත්භාවය; අවදානම් සහ අවස්ථා සඳහා ගත් ක්‍රියාමාර්ගවල සඵලතාව; වැඩිදියුණු කිරීමේ අවස්ථා.
+Outputs (9.3.3): || ප්‍රතිදාන (9.3.3):
+decisions and actions on improvement opportunities, any changes needed to the QMS, and resource needs. Keep the minutes as documented information. || වැඩිදියුණු කිරීමේ අවස්ථා පිළිබඳ තීරණ සහ ක්‍රියාමාර්ග, QMS හි අවශ්‍ය වෙනස්කම් සහ සම්පත් අවශ්‍යතා. රැස්වීම් වාර්තාව ලේඛනගත තොරතුරු ලෙස තබා ගන්න.
+Monthly Plant Meetings || මාසික කම්හල් රැස්වීම්
+The monthly plant management meetings and their action tracker are not part of the ISO management review. They are kept in the CMMS (General MRM). || මාසික කම්හල් කළමනාකරණ රැස්වීම් සහ ඒවායේ ක්‍රියාමාර්ග පසුවිපරම ISO කළමනාකරණ සමාලෝචනයේ කොටසක් නොවේ. ඒවා CMMS (General MRM) හි තබා ඇත.
+🗂️ 2026 MRM with Halcyon held 13-Oct-2026 — minutes to be uploaded || 🗂️ Halcyon සමඟ 2026 MRM 13-Oct-2026 පැවැත්විණි — රැස්වීම් වාර්තාව උඩුගත කළ යුතුයි
+The yearly ISO management review with our ISO consultants Halcyon was held on 13-Oct-2026. Upload its agenda and minutes before Surveillance 2. The 2024 MRM record is also missing from Drive. || අපගේ ISO උපදේශකයින් වන Halcyon සමඟ වාර්ෂික ISO කළමනාකරණ සමාලෝචනය 13-Oct-2026 පැවැත්විණි. අධීක්ෂණ විගණනය 2 ට පෙර එහි න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව උඩුගත කරන්න. 2024 MRM වාර්තාවද Drive හි නැත.
+Last ISO MRM with Halcyon (2026) — minutes to upload || Halcyon සමඟ අවසන් ISO MRM (2026) — රැස්වීම් වාර්තාව උඩුගත කළ යුතුයි
+Upload the 13-Oct-2026 MRM agenda + minutes (Halcyon), and the 2024 MRM record || 13-Oct-2026 MRM න්‍යාය පත්‍රය සහ රැස්වීම් වාර්තාව (Halcyon) සහ 2024 MRM වාර්තාව උඩුගත කරන්න
+The yearly ISO management review with Halcyon — agenda and minutes for 2024, 2025 and 2026. || Halcyon සමඟ වාර්ෂික ISO කළමනාකරණ සමාලෝචනය — 2024, 2025 සහ 2026 න්‍යාය පත්‍ර සහ රැස්වීම් වාර්තා.
 Until 27.06.2027 || 27.06.2027 දක්වා
 Until 08.08.2027 || 08.08.2027 දක්වා
 IB Joint Audit 2026 || IB ඒකාබද්ධ විගණනය 2026
